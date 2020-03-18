@@ -1,3 +1,5 @@
+"""
+
 -- MySQL dump 10.13  Distrib 5.7.9, for Win64 (x86_64)
 --
 -- Host: localhost    Database: picksystem
@@ -18,6 +20,8 @@
 --
 -- Table structure for table `arc`
 --
+
+
 
 DROP TABLE IF EXISTS `arc`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -188,3 +192,5 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2016-11-18 11:52:27
+
+"""
