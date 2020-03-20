@@ -1,16 +1,16 @@
 import sqlite3
 
-conn = sqlite3.connect('SQLiteDB.db')
+conn = sqlite3.connect('whouseDB.db')
 
 c = conn.cursor()
 
-# Creation de la table arcs
-# c.execute("""CREATE TABLE ARCS (
-#     id int,
-#     travel_node real,
-#     head_node_id int,
-#     tail_node_id int
-#     )""") 
+ #Creation de la table arcs
+c.execute("""CREATE TABLE ARCS (
+    id ,
+    travel_node REAL,
+    head_node_id INT,
+    tail_node_id INT
+    )""") 
 
 #Creation de la table SKU
 # Pour la colone class j'ai du utiliser text (ENUM pas un data type SQLite)

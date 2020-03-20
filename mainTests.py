@@ -1,11 +1,12 @@
 import whousedesign as wsd 
+import whouse
+
+whouse_inst = whouse.whouse(warehouse_width = 15,
+warehouse_length = 20,)
+
 
 print('*** Tests whousedesign ***')
-print(str(wsd.twobyone(warehouse_width = 100,
-warehouse_length = 200,
-node_distance = 5,
-bottom_aisle_width = 4,
-aisle_width = 1.5,
-aisle_angle_degree = 0,
-center_aisle_width = 3,
-slots_per_node = 4)))
+print(str(wsd.wsd.add_arcs(whouse_inst)))
+print(str(wsd.wsd.add_nodes(whouse_inst)))
+print(str(wsd.wsd.add_slots(whouse_inst)))
+print(str(wsd.wsd.draw_whouse(whouse_inst)))
