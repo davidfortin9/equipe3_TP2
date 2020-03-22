@@ -10,7 +10,7 @@ class wsd(whouse.whouse):
     def __init__(self, whouse):
         super(wsd, self).__init__()
 
-    def add_arcs(self):
+    def get_arcs(self):
         #Connect to DB
         conn = sqlite3.connect('whouseDB.db')
         c = conn.cursor()
@@ -25,10 +25,10 @@ class wsd(whouse.whouse):
             val = list(i[1:])
             arcs_dict[key] = val
             arcs_dict.update()
-            
+        
         return arcs_dict
     
-    def add_nodes(self):
+    def get_nodes(self):
         #Connect to DB
         conn = sqlite3.connect('whouseDB.db')
         c = conn.cursor()
@@ -46,7 +46,7 @@ class wsd(whouse.whouse):
 
         return nodes_dict
 
-    def add_slots(self):
+    def get_slots(self):
         #Connect to DB
         conn = sqlite3.connect('whouseDB.db')
         c = conn.cursor()
@@ -63,12 +63,10 @@ class wsd(whouse.whouse):
             slots_dict.update()
 
         return slots_dict
-
    
     def draw_whouse(self):
-        arcs = wsd.add_arcs(self)
-        nodes = wsd.add_nodes(self)
-        slots = wsd.add_slots(self)
+        arcs = wsd.get_arcs(self)
+        nodes = wsd.get_nodes(self)
 
         master = Tk()
         master.geometry('300x300')

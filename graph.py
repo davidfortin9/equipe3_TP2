@@ -1,4 +1,6 @@
+import whouse
 import networkx as nx
+import whousedesign as wsd 
 from tlbx import *
 import math
 try:
@@ -7,26 +9,28 @@ except:
     raise
 import tlbx
 
-class graph(tlbx.tlbx):
+class graph(wsd.wsd):
 
-    def __init__(self):
+    def __init__(self, whouse):
         super(graph, self).__init__()
 
     def nx_create (self, *args):
-        if len(args)==3:
-            arcs = args[0]
-            nodes = args[1]
-            graph_type = args[2]
-            G = nx.Graph()
-            G = self.nx_populate(arcs,nodes,graph_type)
-            print ("NetworkX graph created")
-            return G
+        arcs = list(wsd.wsd.get_arcs(self))
+        nodes = list(wsd.wsd.get_nodes(self))
+        graph_type = args[2]
+        G = nx.Graph()
+        G = self.nx_populate(arcs,nodes,graph_type)
+        print ("NetworkX graph created")
+        return G
+
+        """
         if len(args) == 2:
             cnctn = args[0]
             graph_type = args[1]
             arcs = self.fetch_arc(cnctn)
             nodes = self.fetch_node(cnctn)
             return self.nx_create(arcs,nodes,graph_type)
+        """
 
     def nx_populate(self, arcs,nodes,graph_type):
     #This function creates the graph from the database node and arc table
