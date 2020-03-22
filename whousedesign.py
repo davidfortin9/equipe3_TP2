@@ -64,7 +64,7 @@ class wsd(whouse.whouse):
 
         return slots_dict
 
-    # À traviller
+   
     def draw_whouse(self):
         arcs = wsd.add_arcs(self)
         nodes = wsd.add_nodes(self)
@@ -97,9 +97,15 @@ class wsd(whouse.whouse):
             y2 = (nodes[node_key][2] - 0.5)*10
             w.create_oval(x1, y1, x2, y2, fill = "red" )
 
+        # Nom des nodes
+        for node_name in nodes.keys():
+            name = str(node_name)
+            x = nodes[node_name][1]*10
+            y = nodes[node_name][2]*10
+            w.create_text(x, y, text = name, fill = "black")
+
         w.pack()
         master.mainloop()
-    
  
 
 
