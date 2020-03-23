@@ -12,13 +12,14 @@ class graph(wsd.wsd):
         arcs = wsd.wsd.get_arcs(self)
         nodes = wsd.wsd.get_nodes(self)
         node_keys = nodes.keys()
-        edges = []
-        for key in arcs.keys():
-            tup = (arcs[key][1], arcs[key][2])
-            edges.append(tup)
         G = nx.Graph()
+
+        # Adding edges with length
+        for key in arcs.keys():
+            G.add_edge(arcs[key][1], arcs[key][2], length = arcs[key][0])
+
+        # Adding nodes
         G.add_nodes_from(node_keys)
-        G.add_edges_from(edges)
         print ("NetworkX graph created")
         return G 
 
@@ -30,6 +31,9 @@ class graph(wsd.wsd):
             mapping.update
             
         G = graph.nx_create(self)
+    
+        # Edge labels à travailler
+        nx.draw_networkx_edge_labels(G, pos=nx.spring_layout(G), font_size=8, label_pos=0.5)
         nx.draw(G, with_labels = True)
         plt.show()
 
