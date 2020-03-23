@@ -1,28 +1,40 @@
 import whouse
 import networkx as nx
 import whousedesign as wsd 
-from tlbx import *
-import math
-try:
-    import matplotlib.pyplot as plt
-except:
-    raise
-import tlbx
+import matplotlib.pyplot as plt
 
 class graph(wsd.wsd):
 
     def __init__(self, whouse):
         super(graph, self).__init__()
 
-    def nx_create (self, *args):
-        arcs = list(wsd.wsd.get_arcs(self))
-        nodes = list(wsd.wsd.get_nodes(self))
-        graph_type = args[2]
+    def nx_create (self):
+        arcs = wsd.wsd.get_arcs(self)
+        nodes = wsd.wsd.get_nodes(self)
+        node_keys = nodes.keys()
+        edges = []
+        for key in arcs.keys():
+            tup = (arcs[key][1], arcs[key][2])
+            edges.append(tup)
         G = nx.Graph()
-        G = self.nx_populate(arcs,nodes,graph_type)
+        G.add_nodes_from(node_keys)
+        G.add_edges_from(edges)
         print ("NetworkX graph created")
-        return G
+        return G 
 
+    def nx_draw(self):
+        nodes = wsd.wsd.get_nodes(self)
+        mapping = {}
+        for key in nodes.keys():
+            mapping[key] = str(key)
+            mapping.update
+            
+        G = graph.nx_create(self)
+        nx.draw(G, with_labels = True)
+        plt.show()
+
+
+    
         """
         if len(args) == 2:
             cnctn = args[0]
@@ -31,7 +43,7 @@ class graph(wsd.wsd):
             nodes = self.fetch_node(cnctn)
             return self.nx_create(arcs,nodes,graph_type)
         """
-
+"""
     def nx_populate(self, arcs,nodes,graph_type):
     #This function creates the graph from the database node and arc table
         if graph_type[0]=="D" or graph_type[0]=="d":
@@ -89,3 +101,4 @@ class graph(wsd.wsd):
         #saves the plot in a .png file
         plt.savefig("{}.{}".format(name,format), dpi=resolution) # save as png
         plt.show()# display
+        """

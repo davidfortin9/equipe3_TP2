@@ -24,7 +24,7 @@
    (forbidden arcs).
 """
 
-
+"""
 import random
 import argparse
 #from ortools.constraint_solver import pywrapcp
@@ -317,10 +317,4 @@ def gurobi_distance_matrix(M,node_pick_seq,slot_pick_seq,sku_pick_seq,depot_node
     print('Optimal tour: %s' % str(subtour(selected)))
     print('Optimal cost: %g' % m.objVal)
     print('')
-    
     """
-    
-    
-    
-    
-    

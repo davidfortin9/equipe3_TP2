@@ -63,6 +63,7 @@ class wsd(whouse.whouse):
             slots_dict.update()
 
         return slots_dict
+
    
     def draw_whouse(self):
         arcs = wsd.get_arcs(self)
