@@ -14,9 +14,9 @@ class graph(wsd.wsd):
         node_keys = nodes.keys()
         G = nx.Graph()
 
-        # Adding edges with length
+        # Adding edges with weight
         for key in arcs.keys():
-            G.add_edge(arcs[key][1], arcs[key][2], length = arcs[key][0])
+            G.add_edge(arcs[key][1], arcs[key][2], weight = arcs[key][0])
 
         # Adding nodes
         G.add_nodes_from(node_keys)
@@ -31,9 +31,11 @@ class graph(wsd.wsd):
             mapping.update
             
         G = graph.nx_create(self)
-    
+
         # Edge labels à travailler
-        nx.draw_networkx_edge_labels(G, pos=nx.spring_layout(G), font_size=8, label_pos=0.5)
+        # nx.draw_networkx_edge_labels(G, pos=nx.spring_layout(G), font_size=8, label_pos=0.5)
+
+    
         nx.draw(G, with_labels = True)
         plt.show()
 
