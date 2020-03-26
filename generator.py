@@ -1,6 +1,6 @@
-
-
 #http://www.warehouselayout.org/sites/warehouselayout.org/files/generator.py.txt
+
+# Retourne une lsite de listes de SKU sous la forme [id, nom, description, classe,]
 def sku(sku_count):
     sku_list=[]
     for i in range(sku_count):
@@ -16,6 +16,10 @@ def sku(sku_count):
         sku_list.append(sku)
     return sku_list
 
+# Retourne une liste de commande aléatoire (Prend en compte l'écart type de la distribution)
+# start_date/end_date ---> datetime(YYYY,MM,DD)
+# stdev : Écart-type de la distribution des quantités moyennes de commandes par jour
+# pick_date_deviation : L'écart exprimé en nombre de jour entiers entre la réception et le traitements des commandes
 def order_normal_datebound(avg_order_per_day,stdev,start_date,end_date,pick_date_deviation):
     from datetime import datetime
     from random import normalvariate
@@ -39,6 +43,10 @@ def order_normal_datebound(avg_order_per_day,stdev,start_date,end_date,pick_date
             order_list.append(order)
     return order_list
 
+# Retourne une listes de commandes aléatoire
+# start_date/end_date ---> datetime(YYYY,MM,DD)
+# stdev : Écart-type de la distribution des quantités moyennes de commandes par jour
+# pick_date_deviation : L'écart exprimé en nombre de jour entiers entre la réception et le traitements des commandes
 def order_datebound(order_per_day,start_date,end_date,pick_date_deviation):
     from datetime import datetime
     start_date = datetime.toordinal(start_date)
@@ -60,6 +68,7 @@ def order_datebound(order_per_day,start_date,end_date,pick_date_deviation):
             order_list.append(order)
     return order_list
 
+# Retourne des lignes d'items aléatoires pour chaque commande
 def line_item_fixn (line_per_order,quantity,sku_id_list,order_id_list):
     from random import sample
     line_list = []
