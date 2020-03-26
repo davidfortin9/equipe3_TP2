@@ -126,3 +126,4 @@ class FrpAmplMipSolver(solver.Solver):
             ampl.solve()
             Z = (ampl.getObjective('Z').getValues())
         return Z
+        #Test P-O
