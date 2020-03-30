@@ -23,8 +23,11 @@ whouse_inst = whouse.whouse(warehouse_width=15,
                             nodes=nodes,
                             slots=slots)
 
+
 print("*** Tests graph ***")
+whouse_graph = graph.nx_create(arcs, nodes)
 graph.nx_draw(arcs,nodes)
+
 
 print("*** Tests generator")
 print("Test sku")
@@ -42,6 +45,10 @@ print(len(liste_commande_norm))
 print("*** Test orders ***")
 print(orders.get_orders())
 
+
 print("*** Test pickseq ***")
 sku_pick_inst = [[5, 'com1', 'SKU2'], [10, 'com1', 'SKU4'],[20, 'com2', 'SKU3'], [50, 'com2', 'SKU1']]
-print(pickseq.sku_to_node_pick(sku_pick_inst, slots))
+node_pick, slot_pick = pickseq.sku_to_node_pick(sku_pick_inst, slots, 3)
+print(node_pick)
+print(slot_pick)
+print(pickseq.create_dist_matrix(node_pick, 3 ,whouse_graph))
