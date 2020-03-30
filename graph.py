@@ -3,14 +3,14 @@ import networkx as nx
 import whousedesign as wsd 
 import matplotlib.pyplot as plt
 
-class graph(wsd.wsd):
+class graph(whouse.whouse):
 
-    def __init__(self, whouse):
+    def __init__(self):
         super(graph, self).__init__()
 
     def nx_create (self):
-        arcs = wsd.wsd.get_arcs(self)
-        nodes = wsd.wsd.get_nodes(self)
+        arcs = self.arcs()
+        nodes = self.nodes()
         node_keys = nodes.keys()
         G = nx.Graph()
 
@@ -24,7 +24,7 @@ class graph(wsd.wsd):
         return G 
 
     def nx_draw(self):
-        nodes = wsd.wsd.get_nodes(self)
+        nodes = self.nodes()
         mapping = {}
         for key in nodes.keys():
             mapping[key] = str(key)

@@ -5,18 +5,13 @@ from tkinter import *
 import whouse
 import sqlite3
 
-class wsd(whouse.whouse):
-
-    def __init__(self, whouse):
-        super(wsd, self).__init__()
-
-    def get_arcs(self):
+def get_arcs():
         #Connect to DB
         conn = sqlite3.connect('whouseDB.db')
         c = conn.cursor()
 
         #Get arcs from DB
-        c.execute("SELECT * FROM arc")
+        c.execute("SELECT * FROM Arc")
         arcs_list = c.fetchall()
         arcs_dict = {}
         for i in arcs_list:
@@ -27,8 +22,8 @@ class wsd(whouse.whouse):
             arcs_dict.update()
         
         return arcs_dict
-    
-    def get_nodes(self):
+
+def get_nodes():
         #Connect to DB
         conn = sqlite3.connect('whouseDB.db')
         c = conn.cursor()
@@ -46,36 +41,33 @@ class wsd(whouse.whouse):
 
         return nodes_dict
 
-    def get_slots(self):
+def get_slots():
         #Connect to DB
         conn = sqlite3.connect('whouseDB.db')
         c = conn.cursor()
 
         #Get slots from DB
         c.execute("SELECT * from Slot")
-        slots_list = c.fetchall()
-        slots_dict = {}
-        for i in slots_list:
-            val = []
-            key = i[0]
-            val = list(i[1:])
-            slots_dict[key] = val
-            slots_dict.update()
+        slots_list_ini = c.fetchall()
+        slots_list = []
+        for i in slots_list_ini:
+            e = list(i)
+            slots_list.append(e)
 
-        return slots_dict
+        return slots_list
 
    
-    def draw_whouse(self):
-        arcs = wsd.get_arcs(self)
-        nodes = wsd.get_nodes(self)
+def draw_whouse(warehouse_length, warehouse_width):
+        arcs = get_arcs()
+        nodes = get_nodes()
 
         master = Tk()
         master.geometry('300x300')
 
-        w = Canvas(master, height=self._warehouse_length*100, width =self._warehouse_width*100, bg="blue")
+        w = Canvas(master, height=warehouse_length*100, width =warehouse_width*100, bg="blue")
 
         # Lignes de contour
-        w.create_rectangle(0, self._warehouse_length*10, self._warehouse_width*10, 0)
+        w.create_rectangle(0, warehouse_length*10, warehouse_width*10, 0)
 
 
         # Lignes des arcs
@@ -107,6 +99,7 @@ class wsd(whouse.whouse):
         master.mainloop()
  
 
+    
 
 
 
