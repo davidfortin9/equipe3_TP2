@@ -1,6 +1,5 @@
 #http://www.warehouselayout.org/sites/warehouselayout.org/files/pickseq.py.txt
 
-import tlbx
 import networkx as nx 
 import whousedesign as wsd 
 import whouse
