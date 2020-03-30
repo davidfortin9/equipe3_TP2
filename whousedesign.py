@@ -57,9 +57,7 @@ def get_slots():
         return slots_list
 
    
-def draw_whouse(warehouse_length, warehouse_width):
-        arcs = get_arcs()
-        nodes = get_nodes()
+def draw_whouse(warehouse_length, warehouse_width, arcs, nodes):
 
         master = Tk()
         master.geometry('300x300')
@@ -72,8 +70,8 @@ def draw_whouse(warehouse_length, warehouse_width):
 
         # Lignes des arcs
         for arc_keys in arcs.keys():
-            tail_node = arcs[arc_keys][1]
-            head_node = arcs[arc_keys][2]
+            tail_node = int(arcs[arc_keys][1])
+            head_node = int(arcs[arc_keys][2])
             x1 = nodes[tail_node][1]
             y1 = nodes[tail_node][2]
             x2 = nodes[head_node][1]
