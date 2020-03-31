@@ -3,39 +3,30 @@ import networkx as nx
 import whousedesign as wsd 
 import matplotlib.pyplot as plt
 
-class graph(whouse.whouse):
-
-    def __init__(self):
-        super(graph, self).__init__()
-
-    def nx_create (self):
-        arcs = self.arcs()
-        nodes = self.nodes()
+def nx_create(arcs, nodes):
+        arcs = arcs
+        nodes = nodes
         node_keys = nodes.keys()
         G = nx.Graph()
 
         # Adding edges with weight
         for key in arcs.keys():
-            G.add_edge(arcs[key][1], arcs[key][2], weight = arcs[key][0])
+            G.add_edge(arcs[key][1], arcs[key][2])
 
         # Adding nodes
         G.add_nodes_from(node_keys)
         print ("NetworkX graph created")
         return G 
 
-    def nx_draw(self):
-        nodes = self.nodes()
-        mapping = {}
-        for key in nodes.keys():
-            mapping[key] = str(key)
-            mapping.update
+def nx_draw(arcs, nodes):
+        # nodes = nodes
+        # mapping = {}
+        # for key in nodes.keys():
+        #     mapping[key] = str(key)
+        #     mapping.update
             
-        G = graph.nx_create(self)
+        G = nx_create(arcs, nodes)
 
-        # Edge labels à travailler
-        # nx.draw_networkx_edge_labels(G, pos=nx.spring_layout(G), font_size=8, label_pos=0.5)
-
-    
         nx.draw(G, with_labels = True)
         plt.show()
 

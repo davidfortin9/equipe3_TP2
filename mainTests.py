@@ -14,7 +14,7 @@ print('*** Tests whousedesign ***')
 print(str(arcs))
 print(str(nodes))
 print(str(slots))
-print(str(wsd.draw_whouse(20,15)))
+print(str(wsd.draw_whouse(20,15,arcs,nodes)))
 
 
 whouse_inst = whouse.whouse(warehouse_width=15,
@@ -24,7 +24,7 @@ whouse_inst = whouse.whouse(warehouse_width=15,
                             slots=slots)
 
 print("*** Tests graph ***")
-graph.graph.nx_draw(whouse_inst)
+graph.nx_draw(arcs,nodes)
 
 print("*** Tests generator")
 print("Test sku")
