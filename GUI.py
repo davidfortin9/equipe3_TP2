@@ -18,4 +18,3 @@ mybutton = Button(root, text="Run", command=run)
 mybutton.grid(column=0,row=2)
 
 root.mainloop()
-

@@ -11,7 +11,7 @@ def nx_create(arcs, nodes):
 
         # Adding edges with weight
         for key in arcs.keys():
-            G.add_edge(arcs[key][1], arcs[key][2])
+            G.add_edge(arcs[key][1], arcs[key][2], weight=arcs[key][0])
 
         # Adding nodes
         G.add_nodes_from(node_keys)
