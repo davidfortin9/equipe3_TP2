@@ -1,9 +1,21 @@
 from tkinter import *
+import sqlite3
+from mainTests import sku_pick_inst
 
 
 
 root = Tk()
 root.title('Olympus pick system')
+
+'''Database'''
+
+#conn = sqlite3.connect('')
+
+#c = conn.cursor()
+
+#conn.commit()
+
+#conn.close()
 
 '''Frames'''
 
@@ -21,8 +33,8 @@ label_e1.grid(column=0, row=0)
 label_e2 = Label(frame, text='Entrer le numéro de PO')
 label_e2.grid(column=0, row=3)
 
-label_e3 = Label(frame1, text='Affiche les résultats optimaux')
-label_e3.grid(column=1, row=2)
+#label_e3 = Label(frame1, text='Résultats')
+#label_e3.grid(column=1, row=2)
 
 '''Entry'''
 
@@ -31,25 +43,39 @@ e1.grid(column=0, row=1)
 e2 = Entry(frame)
 e2.grid(column=0, row=4)
 
+
+'''Message box'''
+
+#Ajouter les messages pour les retours vides (erreurs, pas de solution, etc)
+
 '''Fonctions'''
 
 def run():
-    order_list = e1.get()
+    order_list = Label(frame, text=e1.get())
 
-def allo():
+def run2():
     label_e3 = Label(frame, text=e2.get())
     label_e3.grid(column=0, row=6)
+
+def run3():
+    res_label = Label(frame1, text=sku_pick_inst)
+    res_label.grid(column=0, row=9)
+    print(sku_pick_inst)    
+
 
 '''Bouttons'''
 
 mybutton = Button(frame, text="Lancer", padx=30, command=run)
 mybutton.grid(column=0,row=2)
 
-mybutton_e1 = Button(frame, text='Lancer', padx=30, command=allo)
+mybutton_e1 = Button(frame, text='Lancer', padx=30, command=run2)
 mybutton_e1.grid(column=0, row=5)
 
 button_quit = Button(root, text='Quitter', command=root.quit)
 button_quit.pack()
+
+res_button = Button(frame1, text='Obtenir les résultats', padx=30, command=run3)
+res_button.grid(column=0, row=8)
 
 
 
