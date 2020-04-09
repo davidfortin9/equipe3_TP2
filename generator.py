@@ -69,9 +69,16 @@ def order_datebound(order_per_day,start_date,end_date,pick_date_deviation):
     return order_list
 
 # Retourne des lignes d'items aléatoires pour chaque commande
-def line_item_fixn (line_per_order,quantity,sku_id_list,order_id_list):
+def line_item_fixn (slots,line_per_order,quantity,order_id_list):
     from random import sample
     line_list = []
+
+    sku_id_list = []
+
+    # creating sku_id_list from slots
+    for slot in slots:
+        sku_id_list.append(slot[2])
+
     for order in order_id_list:
         skus = sample(sku_id_list,line_per_order)
         for sku in skus:
