@@ -20,7 +20,9 @@ def sku_to_node_pick(sku_pick, slots, start_node_id):
 	return node_pick,slot_pick
 
 def create_dist_matrix(node_pick, start_node_id, whouse_graph):
-	dist_matrix = []
+	dist_matrix_2by2 = []
+	dist_matrix_3by3 = []
+
 	for node1 in sorted(node_pick):
 		line=[]
 		for node2 in sorted(node_pick):
@@ -28,6 +30,14 @@ def create_dist_matrix(node_pick, start_node_id, whouse_graph):
 				line.append(nx.dijkstra_path_length(whouse_graph, start_node_id, node2))
 			else:
 				line.append(nx.dijkstra_path_length(whouse_graph, node1, node2))
-		dist_matrix.append(line)
-	return dist_matrix
+		dist_matrix_2by2.append(line)
+	
+	T = len(node_pick)
+
+	dist_matrix_3by3 = [[dist_matrix_2by2 for t in range(T)]]
+
+
+		
+
+	return dist_matrix_3by3
 	

@@ -60,7 +60,7 @@ def nx_draw(arcs, nodes):
     #return the populated graph
 
     def nx_dijkstra_dm(self, Graph,PickSeq):
-    # Creates the distance matrix from graph and a list of nodes that should be visited
+        Creates the distance matrix from graph and a list of nodes that should be visited
         distanceMatrix = []
         for i in range(len(PickSeq)):
             distanceMatrix.append([])

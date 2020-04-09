@@ -1,7 +1,0 @@
-reset;
-option solver gurobi;
-model question2.mod;
-data question2.dat;
-solve;
-display x;
-display Z;
