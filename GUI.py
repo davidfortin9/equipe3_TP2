@@ -1,7 +1,8 @@
 from tkinter import *
 import sqlite3
+import whousedesign as wsd
+import graph
 #from main import dist_matrix1
-#import mainTests
 #from PIL import ImageTk, Image
 
 
@@ -50,6 +51,10 @@ e1.grid(column=0, row=1)
 
 #Ajouter les messages pour les retours vides (erreurs, pas de solution, etc)
 
+'''Sliders'''
+
+#Ajouter des sliders à root
+
 
 '''Fonctions'''
 
@@ -70,14 +75,27 @@ def run():
     era_button = Button(frame1, text='Effacer', padx=30, command= lambda : clear_label(res_label))
     era_button.grid(column=0, row=10)    
 
+    def graphik():
+        arcs = wsd.get_arcs()
+        nodes = wsd.get_nodes()
+        slots = wsd.get_slots()
+        print(arcs)
+        whouse_graph = graph.nx_create(arcs, nodes)
+        graph.nx_draw(arcs,nodes)
+
+    graph_button = Button(frame1, text='Afficher le graphique', padx=30, command= lambda : graphik())
+    graph_button.grid(column=0, row=11)
+
+
 
 '''Bouttons'''
 
 mybutton = Button(frame, text="Lancer", padx=30, command=run)
 mybutton.grid(column=0,row=2)
 
-button_quit = Button(root, text='Quitter', command=root.quit)
+button_quit = Button(root, text='Quitter', command=root.quit) #Il y a un bogue avec le boutton quand on lance le graph
 button_quit.pack()
+
 
 
 
