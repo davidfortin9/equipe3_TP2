@@ -27,21 +27,21 @@ print(arcs)
 
 
 # print("*** Tests graph ***")
-whouse_graph = graph.nx_create(arcs, nodes)
-graph.nx_draw(arcs,nodes)
+# whouse_graph = graph.nx_create(arcs, nodes)
+# graph.nx_draw(arcs,nodes)
 
 
 print("*** Tests generator")
-# print("Test sku")
-# print(gen.sku(20))
-# print("Test order_datebound")
-# liste_commande = gen.order_datebound(3, datetime(2018,3,10), datetime(2018,4,10), 1)
-# print(liste_commande)
-# print(len(liste_commande))
-# print("Test order_normal_datebound")
-# liste_commande_norm = gen.order_normal_datebound(3, 0.25, datetime(2018,3,10), datetime(2018,4,10),1)
-# print(liste_commande_norm)
-# print(len(liste_commande_norm))
+print("Test order_datebound")
+liste_commande = gen.order_datebound(3, datetime(2018,3,10), datetime(2018,4,10), 1)
+print(liste_commande)
+print(len(liste_commande))
+print("Test order_normal_datebound")
+liste_commande_norm = gen.order_normal_datebound(3, 0.25, datetime(2018,3,10), datetime(2018,4,10),1)
+print(liste_commande_norm)
+print(len(liste_commande_norm))
+print("*** Test line_item_fixn ***")
+gen.line_item_fixn(slots, 3, 20, ['com1', 'com2', 'com3', 'com4', 'com5'])
 line_item_sku = [['com1', 'SKU1', 'SKU1', 'SKU1', 'SKU1'], ['com2', 'SKU1', 'SKU1', 'SKU1'], ['com3', 'SKU1', 'SKU1', 'SKU1', 'SKU1'], ['com4', 'SKU2'], ['com5', 'SKU3', 'SKU3', 'SKU4', 'SKU4', 'SKU4']]
 
 

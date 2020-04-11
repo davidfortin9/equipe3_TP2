@@ -1,21 +1,5 @@
 #http://www.warehouselayout.org/sites/warehouselayout.org/files/generator.py.txt
 
-# Retourne une lsite de listes de SKU sous la forme [id, nom, description, classe,]
-def sku(sku_count):
-    sku_list=[]
-    for i in range(sku_count):
-        sku = []
-        sku_id = i+1
-        sku_name = "sku{}".format(i+1)
-        sku_desc = ""
-        sku_class = "A"
-        sku.append(sku_id)
-        sku.append(sku_name)
-        sku.append(sku_desc)
-        sku.append(sku_class)
-        sku_list.append(sku)
-    return sku_list
-
 # Retourne une liste de commande aléatoire (Prend en compte l'écart type de la distribution)
 # start_date/end_date ---> datetime(YYYY,MM,DD)
 # stdev : Écart-type de la distribution des quantités moyennes de commandes par jour
@@ -43,7 +27,7 @@ def order_normal_datebound(avg_order_per_day,stdev,start_date,end_date,pick_date
             order_list.append(order)
     return order_list
 
-# Retourne une listes de commandes aléatoire
+# Retourne une listes de commandes aléatoire sous la forme [order_id, order_date, pick_date, costumer_id, order_number]
 # start_date/end_date ---> datetime(YYYY,MM,DD)
 # stdev : Écart-type de la distribution des quantités moyennes de commandes par jour
 # pick_date_deviation : L'écart exprimé en nombre de jour entiers entre la réception et le traitements des commandes
