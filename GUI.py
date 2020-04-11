@@ -65,30 +65,22 @@ e1.grid(column=0, row=1)
 '''Fonctions'''
 
 def run():
+
+    pick_list = [['Item 1', 10, 'A1'], ['Item 2', 10, 'B1'], ['Item 3', 10, 'C1'], ['Item 4', 10, 'D1'], ['Item 5', 10, 'E1']]
+
     Lb1 = Listbox(frame1)
-    Lb1.insert(1, 'Item 1')
-    Lb1.insert(2, 'Item 2')
-    Lb1.insert(3, 'Item 3')
-    Lb1.insert(4, 'Item 4')
-    Lb1.insert(5, 'Item 5')
-    Lb1.grid(column=0, row=4)
-
     Lb2 = Listbox(frame1)
-    Lb2.insert(1, '10')
-    Lb2.insert(2, '10')
-    Lb2.insert(3, '10')
-    Lb2.insert(4, '10')
-    Lb2.insert(5, '10')
-    Lb2.grid(column=1, row=4)
-
     Lb3 = Listbox(frame1)
-    Lb3.insert(1, 'A1')
-    Lb3.insert(2, 'B1')
-    Lb3.insert(3, 'C1')
-    Lb3.insert(4, 'D1')
-    Lb3.insert(5, 'E1')
-    Lb3.grid(column=2, row=4)
+    count = 1
+    for pick in pick_list:
+        Lb1.insert(count, pick[0])
+        Lb2.insert(count, pick[1])
+        Lb3.insert(count, pick[2])
+        count = count + 1
 
+    Lb1.grid(column=0, row=4)
+    Lb2.grid(column=1, row=4)
+    Lb3.grid(column=2, row=4)
     e1.delete(0, END)
 
     
