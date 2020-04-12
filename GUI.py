@@ -70,7 +70,9 @@ TextArea.grid(column=0, row=1)
 
 def run():
 
-    pick_list = [[TextArea.get('1.0', END), 10, 'A1'], [TextArea.get('2.0', END), 10, 'B1'], [TextArea.get('3.0', END), 10, 'C1'], [TextArea.get('4.0', END), 10, 'D1'], [TextArea.get('5.0', END), 10, 'E1']]
+    pick_list = [[TextArea.get('1.0', '1.end'), 10, 'A1'], [TextArea.get('2.0', '2.end'), 10, 'B1'],
+                [TextArea.get('3.0', '3.end'), 10, 'C1'], [TextArea.get('4.0', '4.end'), 10, 'D1'],
+                 [TextArea.get('5.0', '5.end'), 10, 'E1']]
 
     #là on écrit directement la pick_list mais éventuellement quand le ampl va être terminé, va falloir utiliser
          #les différentes méthodes pour te fournir la pick_list et tu passe la pick_list dans la boucle
@@ -88,7 +90,6 @@ def run():
     Lb1.grid(column=0, row=4)
     Lb2.grid(column=1, row=4)
     Lb3.grid(column=2, row=4)
-    e1.delete(0, END)
 
     
 '''def run1():
@@ -124,6 +125,9 @@ def run():
 
 mybutton = Button(frame, text="Lancer", padx=30, command=run)
 mybutton.grid(column=0,row=2)
+
+era_button = Button(frame, text='Effacer', padx=30) #Pas terminé
+era_button.grid(column=0, row=3)
 
 button_quit = Button(root, text='Quitter', command=root.quit) #Il y a un bogue avec le boutton quand on lance le graph
 button_quit.pack()
