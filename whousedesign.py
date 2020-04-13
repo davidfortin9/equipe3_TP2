@@ -7,7 +7,7 @@ import sqlite3
 
 def get_arcs():
         #Connect to DB
-        conn = sqlite3.connect('whouseDB.db')
+        conn = sqlite3.connect('whouse2DB.db')
         c = conn.cursor()
 
         #Get arcs from DB

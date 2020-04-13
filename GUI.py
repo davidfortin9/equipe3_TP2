@@ -8,7 +8,7 @@ import graph
 
 root = Tk()
 root.title('Olympus pick system')
-root.geometry('500x500')
+root.geometry('500x525')
 
 '''Database'''
 
@@ -76,8 +76,11 @@ TextArea.grid(column=0, row=1)
 '''Fonctions'''
 
 def run():
+    pick_list=['SKU1', 'SKU2', 'SKU3', 'SKU4', 'SKU5']
 
-    pick_list = [[TextArea.get('1.0', '1.end'), '', ''], [TextArea.get('2.0', '2.end'), '', ''],
+    return pick_list
+
+    '''pick_list = [[TextArea.get('1.0', '1.end'), '', ''], [TextArea.get('2.0', '2.end'), '', ''],
                 [TextArea.get('3.0', '3.end'), '', ''], [TextArea.get('4.0', '4.end'), '', ''],
                  [TextArea.get('5.0', '5.end'), '', '']]
 
@@ -93,13 +96,14 @@ def run():
 
     Lb1.grid(column=0, row=4)
     Lb2.grid(column=1, row=4)
-    Lb3.grid(column=2, row=4)
+    Lb3.grid(column=2, row=4)'''
 
     #là on écrit directement la pick_list mais éventuellement quand le ampl va être terminé, va falloir utiliser
          #les différentes méthodes pour te fournir la pick_list et tu passe la pick_list dans la boucle
 
-    def send_entries(): #Fonction qui va envoyer les données entrées dans le textbox au TSP 
-        return     
+def send_entries(): #Fonction qui va envoyer les données entrées dans le textbox au TSP 
+    send = run() 
+         
 
     def get_solutions(): #Fonction qui va retourner la solution du TSP dans les listbox
         return       

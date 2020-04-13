@@ -1,0 +1,10 @@
+reset;
+option solver cplex;
+model rock.mod;
+data rock.dat;
+solve;
+display Z > rock.txt;
+display x > rock.txt;
+display u > rock.txt;
+display A > rock.txt;
+expand > sel.txt;
