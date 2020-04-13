@@ -13,7 +13,7 @@ class FrpAmplMipSolver(solver.Solver):
     def __str__(self):
         pass
 
-    def solve(self, prob, K, C): 
+    def solve(self, prob, K=10, C=150): 
         if type(prob) == frp.FastRouteProb:
             # Création du modèle
             ampl_path = os.path.normpath('C:\Users\maria\Downloads\ampl_mswin64')
@@ -28,19 +28,19 @@ class FrpAmplMipSolver(solver.Solver):
             dist_matrix = prob._dist_matrix
             n = len(dist_matrix)
             liste_n = []
-            liste_K = []
-            liste_C = []
+            liste_A = []
 
-            for i in range(2, n+1):
+            #param d
+            df = amplpy.DataFrame('d')
+            df.setColumn('d', liste_n)
+            ampl.setData(df, 'd')
 
-            df = amplpy.DataFrame('cost')
-            df.setColumn('cost', liste_n)
-            ampl.setData(df, 'V')
-            df = amplpy.DataFrame(('V', 'V'), 'c')
+            #param c
+            df = amplpy.DataFrame(('A', 'A'), 'c')
             df.setValues({
-                (V,V): dist_matrix[i][j]
-                for i, V in enumerate(liste_V)
-                for j, V in enumerate(liste_V)
+                (A,A): dist_matrix[i][j]
+                for i, A in enumerate(liste_A)
+                for j, A in enumerate(liste_A)
                 })
             ampl.setData(df)
             ampl.solve()
