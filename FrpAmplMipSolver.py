@@ -16,12 +16,12 @@ class FrpAmplMipSolver(solver.Solver):
     def solve(self, prob, K=10, C=150): 
         if type(prob) == frp.FastRouteProb:
             # Création du modèle
-            ampl_path = os.path.normpath('C:\Users\maria\Downloads\ampl_mswin64')
+            ampl_path = os.path.normpath('C:/Users/David/Documents/AMPL/ampl_mswin64')
             ampl_env = amplpy.Environment(ampl_path)
             ampl = amplpy.AMPL(ampl_env)
             ampl.setOption('solver', 'gurobi')
             ampl.setOption('gurobi_options', 'timelim 2000 outlev 1')
-            dir_ampl = os.path.normpath('C:\Users\maria\Desktop\SIAD\equipe3_TP2\equipe3_TP2')
+            dir_ampl = os.path.normpath('C:/Users/David/Desktop/equipe3_TP2/equipe3_TP2')
             ampl.read(os.path.join(dir_ampl, 'rock.mod'))
 
             # Instancier le modèle

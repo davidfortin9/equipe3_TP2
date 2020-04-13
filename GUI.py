@@ -1,5 +1,5 @@
-from tkinter import Tk
-import sqlite3
+from tkinter import Tk, LabelFrame, Label, Text, Listbox, Button
+from sqlite3 import connect
 import whousedesign as wsd
 import graph
 #from main import dist_matrix1

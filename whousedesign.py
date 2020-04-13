@@ -1,14 +1,12 @@
 
 import math
-from pyx import *
-from tkinter import Tk
+from tkinter import Canvas, Tk
 import whouse
 import sqlite3
-import canvas
 
 def get_arcs():
         #Connect to DB
-        conn = sqlite3.connect('whouse2DB.db')
+        conn = sqlite3.connect('whouseDB.db')
         c = conn.cursor()
 
         #Get arcs from DB
@@ -26,7 +24,7 @@ def get_arcs():
 
 def get_nodes():
         #Connect to DB
-        conn = sqlite3.connect('whouse2DB.db')
+        conn = sqlite3.connect('whouseDB.db')
         c = conn.cursor()
 
         #Get nodes from DB
@@ -44,7 +42,7 @@ def get_nodes():
 
 def get_slots():
         #Connect to DB
-        conn = sqlite3.connect('whouse2DB.db')
+        conn = sqlite3.connect('whouseDB.db')
         c = conn.cursor()
 
         #Get slots from DB
