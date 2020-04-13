@@ -6,18 +6,19 @@ from datetime import datetime
 import orders
 import pickseq
 import locap
-import VRP_heuristic_solver as VRPH1
+
 
 arcs = wsd.get_arcs()
 nodes = wsd.get_nodes()
 slots = wsd.get_slots()
 print(arcs)
+print(nodes)
 
-# print('*** Tests whousedesign ***')
-# print(str(arcs))
-# print(str(nodes))
-# print(str(slots))
-# print(str(wsd.draw_whouse(20,15,arcs,nodes)))
+print('*** Tests whousedesign ***')
+print(str(arcs))
+print(str(nodes))
+print(str(slots))
+print(str(wsd.draw_whouse(20,15,arcs,nodes)))
 
 
 # whouse_inst = whouse.whouse(warehouse_width=15,
@@ -27,9 +28,9 @@ print(arcs)
 #                             slots=slots)
 
 
-# print("*** Tests graph ***")
+print("*** Tests graph ***")
 whouse_graph = graph.nx_create(arcs, nodes)
-# graph.nx_draw(arcs,nodes)
+graph.nx_draw(arcs,nodes)
 
 
 # print("*** Tests generator")
@@ -58,8 +59,3 @@ whouse_graph = graph.nx_create(arcs, nodes)
 # print('*** Test locap ***')
 # print(locap.coi(G=whouse_graph, slots=slots, line_item_sku=line_item_sku, depot_node_id=1))
 
-print('*** Test VRP_heuristic1_solver ***')
-paths = VRPH1.solve(G=whouse_graph)[0]
-path_lenghts = VRPH1.solve(G=whouse_graph)[1]
-print(paths)
-print(path_lenghts)
