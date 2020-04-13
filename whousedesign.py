@@ -1,7 +1,7 @@
 
 import math
 from pyx import *
-from tkinter import *
+from tkinter import Tk
 import whouse
 import sqlite3
 
@@ -56,7 +56,7 @@ def get_slots():
 
         return slots_list
 
-   
+
 def draw_whouse(warehouse_length, warehouse_width, arcs, nodes):
 
         master = Tk()

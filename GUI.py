@@ -1,4 +1,4 @@
-from tkinter import *
+from tkinter import Tk
 import sqlite3
 import whousedesign as wsd
 import graph
