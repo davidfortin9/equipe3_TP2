@@ -1,7 +1,0 @@
-reset;
-option solver gurobi;
-model TSP.mod;
-data TSP.dat;
-solve;
-display X;
-display TotCost;
