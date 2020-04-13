@@ -32,6 +32,13 @@ frame.pack(padx=10, pady=10)
 frame1 = LabelFrame(root, text='Voici la tournée à effectuer', padx=1, pady=2)
 frame1.pack(padx=20, pady=20)
 
+Lb1 = Listbox(frame1)
+Lb2 = Listbox(frame1)
+Lb3 = Listbox(frame1)
+Lb1.grid(column=0, row=4)
+Lb2.grid(column=1, row=4)
+Lb3.grid(column=2, row=4)
+
 '''Labels'''
 
 label_e1 = Label(frame, text="Entrer la liste d'items à recueillir")
@@ -70,12 +77,9 @@ TextArea.grid(column=0, row=1)
 
 def run():
 
-    pick_list = [[TextArea.get('1.0', '1.end'), 10, 'A1'], [TextArea.get('2.0', '2.end'), 10, 'B1'],
-                [TextArea.get('3.0', '3.end'), 10, 'C1'], [TextArea.get('4.0', '4.end'), 10, 'D1'],
-                 [TextArea.get('5.0', '5.end'), 10, 'E1']]
-
-    #là on écrit directement la pick_list mais éventuellement quand le ampl va être terminé, va falloir utiliser
-         #les différentes méthodes pour te fournir la pick_list et tu passe la pick_list dans la boucle
+    pick_list = [[TextArea.get('1.0', '1.end'), '', ''], [TextArea.get('2.0', '2.end'), '', ''],
+                [TextArea.get('3.0', '3.end'), '', ''], [TextArea.get('4.0', '4.end'), '', ''],
+                 [TextArea.get('5.0', '5.end'), '', '']]
 
     Lb1 = Listbox(frame1)
     Lb2 = Listbox(frame1)
@@ -90,6 +94,18 @@ def run():
     Lb1.grid(column=0, row=4)
     Lb2.grid(column=1, row=4)
     Lb3.grid(column=2, row=4)
+
+    #là on écrit directement la pick_list mais éventuellement quand le ampl va être terminé, va falloir utiliser
+         #les différentes méthodes pour te fournir la pick_list et tu passe la pick_list dans la boucle
+
+    def send_entries(): #Fonction qui va envoyer les données entrées dans le textbox au TSP 
+        return     
+
+    def get_solutions(): #Fonction qui va retourner la solution du TSP dans les listbox
+        return       
+
+def erase_text():
+    TextArea.delete(1.0, END)
 
     
 '''def run1():
@@ -126,7 +142,7 @@ def run():
 mybutton = Button(frame, text="Lancer", padx=30, command=run)
 mybutton.grid(column=0,row=2)
 
-era_button = Button(frame, text='Effacer', padx=30) #Pas terminé
+era_button = Button(frame, text='Effacer', padx=30, command=erase_text)
 era_button.grid(column=0, row=3)
 
 button_quit = Button(root, text='Quitter', command=root.quit) #Il y a un bogue avec le boutton quand on lance le graph
