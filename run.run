@@ -1,0 +1,10 @@
+reset;
+option solver gurobi;
+model question2.mod;
+data question2.dat;
+solve;
+display Z > output_question2.txt;
+display x > output_question2.txt;
+display u > output_question2.txt;
+display c > output_question2.txt;
+expand > modele.txt;
