@@ -14,11 +14,11 @@ def coi(G, slots, line_item_sku, depot_node_id):
     sku_index_list = []
     flat_line_item__sku_list = [item for sublist in line_item_sku for item in sublist]
     for id in sku_id_list:
-        sku_index = [id, line_item_sku.count(id)]
+        sku_index = [id, line_item_sku_list.count(id)]
         sku_index_list.append(sku_index)
         # sorting the SKUs based on the popularity
         sku_index_list = sorted(sku_index_list, key=lambda sku_index_list: sku_index_list[1])
-        sku.index.list.reverse()
+        sku_index_list_reverse()
         # Calculating the distance of each slot to the depot
     for slot in slots:
         distance_from_depot = nx.dijkstra_path_length(G,depot_node_id,slot[1])
