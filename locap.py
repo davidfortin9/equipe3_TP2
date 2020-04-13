@@ -12,7 +12,7 @@ def coi(G, slots, line_item_sku, depot_node_id):
         sku_id_list.append(slot[2])
     
     sku_index_list = []
-    flat_line_item__sku_list = [item for sublist in line_item_sku for item in sublist]
+    flat_line_item_sku_list = [item for sublist in line_item_sku for item in sublist]
     for id in sku_id_list:
         sku_index = [id, flat_line_item_sku_list.count(id)]
         sku_index_list.append(sku_index)
