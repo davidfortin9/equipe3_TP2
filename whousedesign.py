@@ -4,6 +4,7 @@ from pyx import *
 from tkinter import Tk
 import whouse
 import sqlite3
+import canvas
 
 def get_arcs():
         #Connect to DB

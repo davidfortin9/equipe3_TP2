@@ -44,18 +44,18 @@ graph.nx_draw(arcs,nodes)
 # print(len(liste_commande_norm))
 # print("*** Test line_item_fixn ***")
 # gen.line_item_fixn(slots, 3, 20, ['com1', 'com2', 'com3', 'com4', 'com5'])
-# line_item_sku = [['com1', 'SKU1', 'SKU1', 'SKU1', 'SKU1'], ['com2', 'SKU1', 'SKU1', 'SKU1'], ['com3', 'SKU1', 'SKU1', 'SKU1', 'SKU1'], ['com4', 'SKU2'], ['com5', 'SKU3', 'SKU3', 'SKU4', 'SKU4', 'SKU4']]
+line_item_sku = [['com1', 'SKU1', 'SKU1', 'SKU1', 'SKU1'], ['com2', 'SKU1', 'SKU1', 'SKU1'], ['com3', 'SKU1', 'SKU1', 'SKU1', 'SKU1'], ['com4', 'SKU2'], ['com5', 'SKU3', 'SKU3', 'SKU4', 'SKU4', 'SKU4']]
 
 
-# print("*** Test pickseq ***")
-# sku_pick_inst = [[5, 'com1', 'SKU2'], [10, 'com1', 'SKU4'],[20, 'com2', 'SKU3'], [50, 'com2', 'SKU1']]
-# node_pick, slot_pick = pickseq.sku_to_node_pick(sku_pick_inst, slots, 3)
-# print(node_pick)
-# print(slot_pick)
-# print(pickseq.create_dist_matrix(node_pick, 3 ,whouse_graph))
+print("*** Test pickseq ***")
+sku_pick_inst = [[5, 'com1', 'SKU2'], [10, 'com1', 'SKU4'],[20, 'com2', 'SKU3'], [50, 'com2', 'SKU1']]
+node_pick, slot_pick = pickseq.sku_to_node_pick(sku_pick_inst, slots, 3)
+print(node_pick)
+print(slot_pick)
+print(pickseq.create_dist_matrix(node_pick, 3 ,whouse_graph))
 
 
 
-# print('*** Test locap ***')
-# print(locap.coi(G=whouse_graph, slots=slots, line_item_sku=line_item_sku, depot_node_id=1))
+print('*** Test locap ***')
+print(locap.coi(G=whouse_graph, slots=slots, line_item_sku=line_item_sku, depot_node_id=1))
 
