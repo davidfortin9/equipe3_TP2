@@ -7,14 +7,20 @@ import os
 
 class FrpAmplMipSolver(solver.Solver):
 
-    def __init__(self):
+    def __init__(self, prob, k, b, d, N):
         super(FrpAmplMipSolver, self).__init__()
+        self.prob = prob
+        self.k = k
+        self.d = d
+        self.b = b
+        self.N = N
+
 
     def __str__(self):
         pass
 
-    def solve(self, prob, K=10, C=150): 
-        if type(prob) == frp.FastRouteProb:
+    def solve(self): 
+        if type(self.prob) == frp.FastRouteProb:
             # Création du modèle
             ampl_path = os.path.normpath('C:/Users/David/Documents/AMPL/ampl_mswin64')
             ampl_env = amplpy.Environment(ampl_path)
@@ -25,24 +31,53 @@ class FrpAmplMipSolver(solver.Solver):
             ampl.read(os.path.join(dir_ampl, 'rock.mod'))
 
             # Instancier le modèle
-            dist_matrix = prob._dist_matrix
-            n = len(dist_matrix)
-            liste_n = []
-            liste_A = []
+            dist_matrix = self.prob._dist_matrix
+            
+            # param n
+            n = ampl.getParameter('n')
+            n.set(self.N)
+
+            liste_n = [1,2,3,4,5,6,7]
+            
+
+            liste_n0 = []
+            for i in range(0, self.N + 1):
+                liste_n0.append(i)
+
+            print(liste_n)
+            print(liste_n0)
+            # param K
+            K = ampl.getParameter('K')
+            K.set(self.k)
+
+            # param B
+            B = ampl.getParameter('B')
+            B.set(self.b)
+
+            df = amplpy.DataFrame('I')
+            df.setColumn('I', liste_n)
+            ampl.setData(df, 'I')
+            df = amplpy.DataFrame('J')
+            df.setColumn('J', liste_n)
+            ampl.setData(df, 'J')
+
+            #param c
+            df = amplpy.DataFrame(('I', 'J'), 'c')
+            df.setValues({
+                (I,J): dist_matrix[i][j]
+                for i, I in enumerate(liste_n0)
+                for j, J in enumerate(liste_n0)
+                })
 
             #param d
             df = amplpy.DataFrame('d')
-            df.setColumn('d', liste_n)
-            ampl.setData(df, 'd')
+            df.setValues({for i in liste_n:
+            (self.N): self.d[i]
+                    })
 
-            #param c
-            df = amplpy.DataFrame(('A', 'A'), 'c')
-            df.setValues({
-                (A,A): dist_matrix[i][j]
-                for i, A in enumerate(liste_A)
-                for j, A in enumerate(liste_A)
-                })
             ampl.setData(df)
+            print(df)
+
             ampl.solve()
 
             # Extraction de la visit sequence
@@ -52,6 +87,7 @@ class FrpAmplMipSolver(solver.Solver):
             x.index1 = list(x.getColumn('index1'))
             visit_sequence_temp = []
             print(x)
+            """
             count = 0
             for i in x.val:
                 if i == 1:
@@ -71,3 +107,4 @@ class FrpAmplMipSolver(solver.Solver):
             sol.visit_sequence = visit_sequence
             Z = (ampl.getObjective('Z').getValues())
         return sol, Z
+        """

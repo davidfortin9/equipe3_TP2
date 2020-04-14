@@ -1,7 +1,7 @@
 
 param n := 7; 
 param K := 10; 
-param C := 150; 
+param B := 150; 
 param d := 1 50, 2 50, 3 50, 4 150, 5 50, 6 50, 7 50; 
 param c : 0 1 2 3 4 5 6 7:= 
 
