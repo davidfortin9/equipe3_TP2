@@ -28,7 +28,7 @@ class FrpAmplMipSolver(solver.Solver):
             ampl.setOption('solver', 'gurobi')
             ampl.setOption('gurobi_options', 'timelim 2000 outlev 1')
             dir_ampl = os.path.normpath('C:/Users/David/Desktop/equipe3_TP2/equipe3_TP2')
-            ampl.read(os.path.join(dir_ampl, 'rock.mod'))
+            ampl.read(os.path.join(dir_ampl, 'VRP.mod'))
 
             # Instancier le modèle
             dist_matrix = self.prob._dist_matrix
@@ -71,9 +71,8 @@ class FrpAmplMipSolver(solver.Solver):
 
             #param d
             df = amplpy.DataFrame('d')
-            df.setValues({for i in liste_n:
-            (self.N): self.d[i]
-                    })
+            df.setValues(for i in self.d.keys():
+            {()})
 
             ampl.setData(df)
             print(df)
