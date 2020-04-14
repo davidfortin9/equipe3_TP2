@@ -2,8 +2,8 @@ from tkinter import Tk, LabelFrame, Label, Text, Listbox, Button
 from sqlite3 import connect
 import whousedesign as wsd
 import graph
-#from main import dist_matrix1
-#from PIL import ImageTk, Image
+import mainTests as mt
+
 
 
 root = Tk()
@@ -76,42 +76,55 @@ TextArea.grid(column=0, row=1)
 '''Fonctions'''
 
 def run():
-    pick_list=['SKU1', 'SKU2', 'SKU3', 'SKU4', 'SKU5']
-
-    return pick_list
 
     '''pick_list = [[TextArea.get('1.0', '1.end'), '', ''], [TextArea.get('2.0', '2.end'), '', ''],
                 [TextArea.get('3.0', '3.end'), '', ''], [TextArea.get('4.0', '4.end'), '', ''],
-                 [TextArea.get('5.0', '5.end'), '', '']]
+                 [TextArea.get('5.0', '5.end'), '', '']]'''
+
+    #Envoie les entrées vers le problème du mainTests
+    send_list = [[TextArea.get('1.0', '1.end')],
+                [TextArea.get('2.0', '1.end')],
+                [TextArea.get('3.0', '1.end')],
+                [TextArea.get('4.0', '1.end')],
+                [TextArea.get('5.0', '1.end')]
+                ]
+                        
+    
+    #Retour de la solution du TSP dans les listbox
+    pick_list = [[mt.line_item_sku[1], mt.sku_pick_inst[1], mt.slot_pick[1]],
+                [mt.line_item_sku[1], mt.sku_pick_inst[1], mt.slot_pick[1]],
+                [mt.line_item_sku[1], mt.sku_pick_inst[1], mt.slot_pick[1]],
+                [mt.line_item_sku[1], mt.sku_pick_inst[1], mt.slot_pick[1]],
+                [mt.line_item_sku[2], mt.sku_pick_inst[2], mt.slot_pick[2]]
+                ]
 
     Lb1 = Listbox(frame1)
     Lb2 = Listbox(frame1)
     Lb3 = Listbox(frame1)
     count = 1
     for pick in pick_list:
+        #Lb1.insert(count, mt.sku_pick_inst[1:3])
         Lb1.insert(count, pick[0])
         Lb2.insert(count, pick[1])
+        #Lb3.insert(count, mt.slot_pick[1])
         Lb3.insert(count, pick[2])
         count = count + 1
 
-    Lb1.grid(column=0, row=4)
-    Lb2.grid(column=1, row=4)
-    Lb3.grid(column=2, row=4)'''
+        Lb1.grid(column=0, row=4)
+        Lb2.grid(column=1, row=4)
+        Lb3.grid(column=2, row=4)
 
-    #là on écrit directement la pick_list mais éventuellement quand le ampl va être terminé, va falloir utiliser
+        #là on écrit directement la pick_list mais éventuellement quand le ampl va être terminé, va falloir utiliser
          #les différentes méthodes pour te fournir la pick_list et tu passe la pick_list dans la boucle
-
-def send_entries(): #Fonction qui va envoyer les données entrées dans le textbox au TSP 
-    send = run() 
-         
-
-    def get_solutions(): #Fonction qui va retourner la solution du TSP dans les listbox
-        return       
+    
 
 def erase_text():
-    TextArea.delete(1.0, END)
+    TextArea.delete(1.0, 'end')
 
-    
+#def erase_text2(widget):
+ #   widget['text'] = ''    
+
+
 '''def run1():
     res_label = Label(frame1, text=e1.get())
     res_label.grid(column=0, row=9)

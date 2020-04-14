@@ -4,7 +4,6 @@ import networkx as nx
 import whousedesign as wsd 
 import whouse
 import graph
-from GUI import send_entries
 
 def sku_to_node_pick(sku_pick, slots, start_node_id):
 	print("Creating a Node list from the SKU list...")

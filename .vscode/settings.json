@@ -1,11 +1,8 @@
 {
-<<<<<<< HEAD
     "python.pythonPath": ".venv\\Scripts\\python.exe",
     "git.ignoreLimitWarning": true
-=======
     "python.pythonPath": "C:\\Users\\David\\AppData\\Local\\Programs\\Python\\Python37\\python.exe",
     "git.ignoreLimitWarning": true,
     "python.linting.enabled": true
->>>>>>> cae9ae06922915c7b3a8ef2ae2af1fd8b381b475
     
 }
