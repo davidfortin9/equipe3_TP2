@@ -1,10 +1,9 @@
 reset;
 option solver cplex;
-model rock.mod;
-data rock.dat;
+model VRP.mod;
+data VRP.dat;
 solve;
-display Z > rock.txt;
-display x > rock.txt;
-display u > rock.txt;
-display A > rock.txt;
-expand > sel.txt;
+display Z; 
+display x;
+display u; 
+display A; 

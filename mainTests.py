@@ -6,7 +6,7 @@ from datetime import datetime
 import orders
 import pickseq
 import locap
-#import FrpAmplMipSolver as FrpAmpl 
+import FrpAmplMipSolver as FrpAmpl 
 import fastroute_problem as frp
 
 
@@ -30,9 +30,9 @@ slots = wsd.get_slots()
 # #                             slots=slots)
 
 
-print("*** Tests graph ***")
-whouse_graph = graph.nx_create(arcs, nodes)
-graph.nx_draw(arcs,nodes)
+# print("*** Tests graph ***")
+# whouse_graph = graph.nx_create(arcs, nodes)
+# graph.nx_draw(arcs,nodes)
 
 
 print("*** Tests generator")
@@ -64,12 +64,13 @@ line_item_sku = [['com1', 'SKU1'], ['com2', 'SKU3'], ['com3', 'SKU3', 'SKU4'], [
 
 print('*** Test FrpProblems ***')
 print('L\'instance devrait s\'afficher:')
-dist_matrix = [[0, 4.5, 6.5, 7.5, 10, 13, 10, 10 ],[1, 8.5, 0, 1.9, 3, 2.7, 14, 12, 12],[2, 13, 5, 0, 1.1, 3.5, 16, 13, 13],[3, 12, 4.5, 4.5, 0, 2.4, 14, 12, 12],[4, 13, 6.5, 5, 6, 0, 16, 13, 13],[5, 8.5, 16, 15, 16, 19, 0, 2.6, 9],[6, 6, 14, 13, 14, 16, 2.6, 0, 1],[7, 5.5, 13, 12, 13, 15, 3.5, 8, 0]]
+dist_matrix = [[0, 4.5, 6.5, 7.5, 10, 13, 10, 10],[8.5, 0, 1.9, 3, 2.7, 14, 12, 12],[13, 5, 0, 1.1, 3.5, 16, 13, 13],[12, 4.5, 4.5, 0, 2.4, 14, 12, 12],[13, 6.5, 5, 6, 0, 16, 13, 13],[8.5, 16, 15, 16, 19, 0, 2.6, 9],[6, 14, 13, 14, 16, 2.6, 0, 1],[5.5, 13, 12, 13, 15, 3.5, 8, 0]]
 frp_inst = frp.FastRouteProb(dist_matrix=dist_matrix)
 print(str(frp_inst))
 
-# print("*** Test FrpAmplMipSolver *** ")
-# FrpAmplInst = FrpAmpl.FrpAmplMipSolver(prob=frp_inst,k=10,b=150,d={1:50,2:50,3:50,4:150,5:50,6:50,7:50}, N=7)
-# FrpAmpl.FrpAmplMipSolver.solve(FrpAmplInst)
+print("*** Test FrpAmplMipSolver *** ")
+FrpAmplInst = FrpAmpl.FrpAmplMipSolver(prob=frp_inst,k=10,b=150,d={2:50,3:50,4:50,5:150,6:50,7:50,8:50}, N=8)
+print(FrpAmpl.FrpAmplMipSolver.solve(FrpAmplInst)[0])
+print(FrpAmpl.FrpAmplMipSolver.solve(FrpAmplInst)[1])
 
 
