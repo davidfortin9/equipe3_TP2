@@ -1,3 +1,6 @@
+'''On va utiliser ce fichier comme point d'entrée pour le GUI. On va utiliser __main__ 
+    pour l'interface en ligne de commande pour les tests en lots.'''
+
 import whousedesign as wsd 
 import whouse
 import graph
