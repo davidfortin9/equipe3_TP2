@@ -166,8 +166,6 @@ def main(argv=None):
             if params['config'] is None:
                 raise Usage('Le fichier de configuration est obligatoire.')
 
-            # :TODO: Ajouter du code pour lancer les modules de traitement ici
-
             return params
             #return 0
 
@@ -176,11 +174,11 @@ def main(argv=None):
     except Usage as err:
         print(err.msg, file=sys.stderr)
         print("Utilisez --help pour afficher la documentation", file=sys.stderr)
-        return 2
+        return 2       
 
 def get_route(params):
     return
-    #À coder pour lancer le solver
+    #À coder pour lancer le solver à partir de nouveau_fichier.py
 
 if __name__ == '__main__':
     print('\n' + 50*'*')

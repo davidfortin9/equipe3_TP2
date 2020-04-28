@@ -2,8 +2,9 @@ import FrpAmplMipSolver as FrpAmpl
 import fastroute_problem as frp
 import route_solution as rsol 
 
-class Optimizer:
+class Optimizer():
     def __init__(self, params=None):
+        
         self.time = None
         self.verbose = None
         self.solver = None
