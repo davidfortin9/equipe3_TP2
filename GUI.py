@@ -1,28 +1,15 @@
 from tkinter import Tk, LabelFrame, Label, Text, Listbox, Button
 from sqlite3 import connect
-import whousedesign as wsd
-import graph
-import mainTests as mt
+#import whousedesign as wsd
+#import graph
+#import mainTests as mt
 
 
 
 root = Tk()
-root.title('Olympus pick system')
+root.title('SIAD gestion d\'entrepôt')
 root.geometry('500x525')
 
-'''Database'''
-
-#conn = sqlite3.connect('')
-
-#c = conn.cursor()
-
-#conn.commit()
-
-#conn.close()
-
-'''Images'''
-
-#seq_img = ImageTk.PhotoImage(whouse_graph)
 
 '''Frames'''
 
@@ -41,7 +28,7 @@ Lb3.grid(column=2, row=4)
 
 '''Labels'''
 
-label_e1 = Label(frame, text="Entrer la liste d'items à recueillir")
+label_e1 = Label(frame, text="Entrer la liste d'items à recueillir pour la commande")
 label_e1.grid(column=0, row=0)
 
 label_e2 = Label(frame1, text='Item', padx=25)
@@ -77,26 +64,26 @@ TextArea.grid(column=0, row=1)
 
 def run():
 
-    '''pick_list = [[TextArea.get('1.0', '1.end'), '', ''], [TextArea.get('2.0', '2.end'), '', ''],
-                [TextArea.get('3.0', '3.end'), '', ''], [TextArea.get('4.0', '4.end'), '', ''],
-                 [TextArea.get('5.0', '5.end'), '', '']]'''
+    pick_list = [[TextArea.get('1.0', '1.end'), '10', 'A1'], [TextArea.get('2.0', '2.end'), '15', 'A5'],
+                [TextArea.get('3.0', '3.end'), '8', 'A2'], [TextArea.get('4.0', '4.end'), '14', 'B11'],
+                 [TextArea.get('5.0', '5.end'), '7', 'B8']]
 
     #Envoie les entrées vers le problème du mainTests
-    send_list = [[TextArea.get('1.0', '1.end')],
-                [TextArea.get('2.0', '1.end')],
-                [TextArea.get('3.0', '1.end')],
-                [TextArea.get('4.0', '1.end')],
-                [TextArea.get('5.0', '1.end')]
-                ]
+    #send_list = [[TextArea.get('1.0', '1.end')],
+    #            [TextArea.get('2.0', '1.end')],
+    #            [TextArea.get('3.0', '1.end')],
+    #            [TextArea.get('4.0', '1.end')],
+    #            [TextArea.get('5.0', '1.end')]
+    #            ]
                         
     
     #Retour de la solution du TSP dans les listbox
-    pick_list = [[mt.line_item_sku[1], mt.sku_pick_inst[1], mt.slot_pick[1]],
-                [mt.line_item_sku[1], mt.sku_pick_inst[1], mt.slot_pick[1]],
-                [mt.line_item_sku[1], mt.sku_pick_inst[1], mt.slot_pick[1]],
-                [mt.line_item_sku[1], mt.sku_pick_inst[1], mt.slot_pick[1]],
-                [mt.line_item_sku[2], mt.sku_pick_inst[2], mt.slot_pick[2]]
-                ]
+    #pick_list = [[mt.line_item_sku[1], mt.sku_pick_inst[1], mt.slot_pick[1]],
+    #            [mt.line_item_sku[1], mt.sku_pick_inst[1], mt.slot_pick[1]],
+    #            [mt.line_item_sku[1], mt.sku_pick_inst[1], mt.slot_pick[1]],
+    #            [mt.line_item_sku[1], mt.sku_pick_inst[1], mt.slot_pick[1]],
+    #            [mt.line_item_sku[2], mt.sku_pick_inst[2], mt.slot_pick[2]]
+    #            ]
 
     Lb1 = Listbox(frame1)
     Lb2 = Listbox(frame1)
@@ -162,7 +149,7 @@ mybutton.grid(column=0,row=2)
 era_button = Button(frame, text='Effacer', padx=30, command=erase_text)
 era_button.grid(column=0, row=3)
 
-button_quit = Button(root, text='Quitter', command=root.quit) #Il y a un bogue avec le boutton quand on lance le graph
+button_quit = Button(root, text='Quitter', command=root.quit) 
 button_quit.pack()
 
 
