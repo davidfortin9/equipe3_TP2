@@ -32,6 +32,7 @@ import getopt
 import sys
 import os
 import __init__ as init
+import utils
 #from pathlib import Path
 
 class Usage(Exception):
@@ -177,8 +178,9 @@ def main(argv=None):
         return 2       
 
 def get_route(params):
-    return
-    #À coder pour lancer le solver à partir de nouveau_fichier.py
+    objSync = init.Optimizer(params=params)
+    solution = objSync.solveProblem()
+    #show_solution(solution)
 
 if __name__ == '__main__':
     print('\n' + 50*'*')

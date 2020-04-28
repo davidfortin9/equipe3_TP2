@@ -1,62 +1,48 @@
-import FrpAmplMipSolver as FrpAmpl
-import fastroute_problem as frp
-import route_solution as rsol 
-import os
-from utils import Utils
+import json
+import yaml
+import sys
 from pathlib import Path
+import os
+import datetime
 
-class Optimizer():
+from .utils import Utils
+
+from qcPlanner.qcOptimizer import Optimizer as Opt
+
+from .config import Config
+
+class QcSync():
     def __init__(self, params=None):
         
-        self.time = None
-        self.verbose = None
-        self.solver = None
-        self.ampl_path = None
-        self.mip_model_path = None
-        self.mip_model = None
+        self.solveur = Opt()
         self.data = None
-        self.prob = None
-        self.k = None
-        self.d = None
-        self.b = None
-        self.N = None
-
-    def optimize(self, params):
+        self.is_data_saved = False 
+        self.data_filename = None     
+        self.config_filename = None
+        self.params = dict()
+        self.initParams()
+        self.config_filename = Config.DEFAULT_CONFIG_FILE
+        self.load_configuration(Config.DEFAULT_CONFIG_FILE)
+        if params is not None:
+            self.load_configurations(params)
         
-        self.time = float(params['time'])
-        self.verbose = int(params['verbose'])
-        self.solver = int(params['solver'])
-        self.ampl_path = params['ampl_path']
-        self.mip_model_path = params['mip_model_path']
-        self.mip_model = params['mip_model']
-        self.data = params['data']
-        self.prob = params['prob']
-        self.k = params['k']
-        self.d = params['d']
-        self.b = params['b']
-        self.N = params['N']
+        # :TODO: Remplacer par un fichier unique pour toutes les instances?
+        #self.result_file = os.path.join(self.params['result-folder'], os.path.basename(self.params['in-file']).split('.')[0]+'.csv')
+        self.result_file = os.path.join(self.params['result-folder'], 'experiments.csv')
+        del self.params['result-folder']
 
-        if int(self.solver) == 1 :
-            sol, sol_status = self.solveMip()
-
-    
-    def solveMip(self):
+    def initParams(self):
+        self.params['config'] = None
+        self.params['solver'] = None
+        self.params['time'] = None
+        self.params['in-file'] = None
+        self.params['out-file'] = None
+        self.params['verbose'] = None
+        self.params['ampl_path'] = None
+        self.params['cp_model'] = None
+        self.params['cp_model_path'] = None
         
-        frp_inst = frp.FastRouteProb(self.prob)
-        # Run
-        print('Problème actuel:')
-        print(str(frp_inst))
-        print('Résoudre le problème avec FrpAmplMipSolver')
-        frp_solver = FrpAmpl.FrpAmplMipSolver(self.prob, self.k, self.d, self.b, self.N)
-        frp_solver.max_time_sec = self.time
-        frp_sol = frp_solver.solve()
 
-        status = 1
-        if frp_sol.validate() == False:
-            status = 3
-
-        return { 'Route':str(frp_sol), 'Valeur': str(frp_sol.evaluate())} , status        
-    
     def solveProblem(self):
 
         if self.data is None:
@@ -64,11 +50,26 @@ class Optimizer():
                 self.load_data(self.params['in-file'])
             else:
                 return """
-                        Aucune donnée n'est disponible
-                    """
+                    Aucune donnée n'est disponible
+                """
 
         self.params['data']= self.data
 
+        self.sol, self.sol_status = self.solveur.optimize(self.params)
+        
+        # Save solution in a file
+        
+        if self.params['out-file'] is not  None:
+            Utils.dumpYaml(self.sol, self.params['out-file'])
+
+        append_to_existing_file = os.path.isfile(self.result_file)
+        Utils.dumpCsv(self.params,
+                      self.sol_status,
+                      self.sol['Valeur'],
+                      filename = self.result_file,
+                      append=append_to_existing_file)
+        return self.sol
+        
     def load_data(self,filename):
         
         filename = os.path.normpath(filename)
@@ -119,7 +120,7 @@ class Optimizer():
             if params['out-file'] is not None:
                 self.params['out-file'] = params['out-file']
         except KeyError:
-                pass
+            pass
         try:
             if params['verbose'] is not None:
                 self.params['verbose'] = int(params['verbose'])
@@ -142,16 +143,15 @@ class Optimizer():
                 self.params['cp_model'] = params['cp_model']
         except KeyError:
             pass
-
+    
     def get_data(self,row,col):
         if self.data is None:
             return
         return self.data[row][col]
 
-    '''def show_solution(sol):
-  
-        print("\n\n Meilleure route obtenue\n\n" + 50*"*")
-        for (key, val) in sol.items():
-            print('\t' + key )
-            print('\t' + val)
-            print(50 * '*')'''
+    def get_nb_customers(self):
+        if self.data is None:
+            return 0
+        else:
+            return len(self.data)
+
