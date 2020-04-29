@@ -1,11 +1,4 @@
-#import whouseOptimizer.solver as sl 
-#import whouseOptimizer.fastroute_problem as frp 
-#import whouseOptimizer.route_solution as rsol
 
-#import networkX
-#import amplpy
-#import sys
-#import os
 
 # Floyd Warshall Algorithm in python
 
