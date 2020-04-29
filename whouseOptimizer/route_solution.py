@@ -21,6 +21,8 @@ class Route(sol.Solution):
         if sorted(self.visit_sequence) == location_list:
             return True
 
+        
+
         return False
 
     def evaluate(self):
