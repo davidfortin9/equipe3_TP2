@@ -15,7 +15,7 @@ class Route(sol.Solution):
         tmp_str = ', '.join([str(i) for i in self.visit_sequence])
         
         return str(tmp_str)
-       
+        
     def validate(self):
         location_list = list(range(0, self.problem.count_locations()))
         if sorted(self.visit_sequence) == location_list:
