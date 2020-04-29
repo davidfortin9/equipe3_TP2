@@ -3,11 +3,10 @@ nV = 4
 
 INF = 999
 
-  # Instancier le modèle
+# Instancier le modèle
 dist_matrix = prob._dist_matrix
 
-
-def floydWarshall(graph):
+floydWarshall(graph):
     dist = list(map(lambda i : list(map(lambda j : j, i)), graph) )
     
     for k in range(nV): 
