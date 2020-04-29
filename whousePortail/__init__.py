@@ -60,9 +60,11 @@ def main(argv=None):
             params['d'] = None
             params['n'] = None
             opts, args = getopt.getopt(argv[1:],
-                                    'hc:t:v:s:k:b:d:N:',
+                                    'hc:i:o:t:v:s:k:b:d:N:',
                                     ['help',
                                         'config=',
+                                        'in-file=',
+                                        'out-file=',
                                         'time=',
                                         'verbose='
                                         'solver='
