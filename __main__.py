@@ -10,6 +10,7 @@ from whousePortail import *
 def get_route(params):
     objSync = whs(params=params)
     solution = objSync.solveProblem()
+    print(solution)
     #show_solution(solution)
 
 if __name__ == '__main__':
