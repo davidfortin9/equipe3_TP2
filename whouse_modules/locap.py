@@ -2,8 +2,8 @@
 
 def coi(G, slots, line_item_sku, depot_node_id):
     from copy import copy
-    import graph
-    import whousedesign
+    import whouse_modules.graph
+    import whouse_modules.whousedesign
     import networkx as nx
     sku_id_list = []
 
