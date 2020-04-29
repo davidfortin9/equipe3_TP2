@@ -1,37 +1,25 @@
 
-nV = 4
+inf = 1e10 
 
-INF = 999
+def floyd_warshall(weights):
+    V = len(weights)
+    dist_matrix = weights
+    for k in range(V):
+        next_dist_matrix = [list(row) for row in dist_matrix] # make a copy of distance matrix
+        for i in range(V):
+            for j in range(V):
+                next_dist_matrix[i][j] = min(dist_matrix[i][j], dist_matrix[i][k] + dist_matrix[k][j])
+        dist_matrix = next_dist_matrix # update
+    return dist_matrix
 
-# Instancier le modèle
-dist_matrix = prob._dist_matrix
 
-floydWarshall(graph):
-    dist = list(map(lambda i : list(map(lambda j : j, i)), graph) )
-    
-    for k in range(nV): 
-        for i in range(nV): 
-            for j in range(nV): 
-                dist[i][j] = min(dist[i][j], dist[i][k]+ dist[k][j]) 
-    printSolution(dist) 
+graph = [
+    [0, inf, inf, -3],
+    [inf, 0, inf, 8],
+    [inf, 4, 0, -2],
+    [5, inf, 3, 0]
+]
 
-def printSolution(dist): 
-    for i in range(nV): 
-        for j in range(nV): 
-            if(dist[i][j] == INF): 
-                print("INF", end =" ")
-            else: 
-                print(dist[i][j], end ="  ")  
-        print(" ")
-
-#INF si il n'y a pas d'arc entre i et j
-#0 quand i = j
-graph = [[0, 3, INF, 5],
-        [2, 0, INF, 4],
-        [INF, 1, 0, INF],
-        [INF, INF, 2, 0]]
-
-floydWarshall(graph)
-
+print(floyd_warshall(graph))
 
 
