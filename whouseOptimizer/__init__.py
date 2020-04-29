@@ -30,7 +30,7 @@ class Optimizer():
         self.mip_model_path = params['mip_model_path']
         self.mip_model = params['mip_model']
         self.data = params['data']
-        self.prob = params['prob']
+#        self.prob = params['prob']
         self.k = params['k']
         self.d = params['d']
         self.b = params['b']
@@ -42,12 +42,12 @@ class Optimizer():
     
     def solveMip(self):
         
-        frp_inst = frp.FastRouteProb(self.prob)
+        frp_inst = frp.FastRouteProb(self.data)
         # Run
         print('Problème actuel:')
         print(str(frp_inst))
         print('Résoudre le problème avec FrpAmplMipSolver')
-        frp_solver = FrpAmpl.FrpAmplMipSolver(self.prob, self.k, self.d, self.b, self.N)
+        frp_solver = FrpAmpl.FrpAmplMipSolver(self.data, self.k, self.d, self.b, self.N)
         frp_solver.max_time_sec = self.time
         frp_sol = frp_solver.solve()
 

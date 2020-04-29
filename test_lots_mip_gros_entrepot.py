@@ -1,7 +1,7 @@
 import subprocess
 import os
 
-'''On test 5 instances sur un gros entrepôt, d'une matrice de taille 50x50'''
+'''On test 5 matrices de taille 50 x 50 (gros entrepôt) pour notre solver amplmip'''
 
 size_nos = range(4,8)
 instance_nos = range(1,4)

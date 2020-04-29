@@ -21,8 +21,8 @@ class WhouseSync():
         self.config_filename = None
         self.params = dict()
         self.initParams()
-        self.config_filename = config.Config.DEFAULT_CONFIG_FILE
-        self.load_configuration(config.Config.DEFAULT_CONFIG_FILE)
+#        self.config_filename = config.Config.DEFAULT_CONFIG_FILE
+#        self.load_configuration(config.Config.DEFAULT_CONFIG_FILE)
         if params is not None:
             self.load_configurations(params)
         
@@ -39,8 +39,8 @@ class WhouseSync():
         self.params['out-file'] = None
         self.params['verbose'] = None
         self.params['ampl_path'] = None
-        self.params['cp_model'] = None
-        self.params['cp_model_path'] = None
+        self.params['mip_model'] = None
+        self.params['mip_model_path'] = None
         
 
     def solveProblem(self):
