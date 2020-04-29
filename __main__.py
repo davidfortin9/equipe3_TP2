@@ -2,10 +2,13 @@
     le dossier whousePortail'''
 
 import sys
+from whousePortail.whouseSync import WhouseSync as whs 
+from whousePortail import *
+
 
 
 def get_route(params):
-    objSync = init.Optimizer(params=params)
+    objSync = whs(params=params)
     solution = objSync.solveProblem()
     #show_solution(solution)
 

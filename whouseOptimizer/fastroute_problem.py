@@ -1,4 +1,4 @@
-import problem as prob
+import whouseOptimizer.problem as prob
 
 import copy
 

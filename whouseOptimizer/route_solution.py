@@ -1,5 +1,5 @@
-import solution as sol
-import fastroute_problem as frp 
+import whouseOptimizer.solution as sol
+import whouseOptimizer.fastroute_problem as frp 
 
 import sys
 

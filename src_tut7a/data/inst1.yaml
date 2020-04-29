@@ -1,0 +1,6 @@
+# Sur chaque ligne figure le numero du client 
+# suivi d'une liste contenant les distances entre le client et les autres clients
+1: [0,  20,  30, 40]
+2: [20,  0,  30,  5]
+3: [30, 30,   0, 10]
+4: [40,  5,  10,  0]

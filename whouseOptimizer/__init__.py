@@ -1,8 +1,8 @@
-import FrpAmplMipSolver as FrpAmpl
-import fastroute_problem as frp
-import route_solution as rsol 
+import whouseOptimizer.FrpAmplMipSolver as FrpAmpl
+import whouseOptimizer.fastroute_problem as frp
+import whouseOptimizer.route_solution as rsol 
 import os
-from utils import Utils
+from whousePortail.utils import Utils
 from pathlib import Path
 
 class Optimizer():

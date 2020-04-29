@@ -1,0 +1,9 @@
+ampl_path: ''
+cp_model_path: 'qcPlanner/qcOptimizer/ampl_models'
+cp_model: 'quantum_courrier_cp.mod'
+time: 60
+verbose: 1
+solver: 2
+in-file: 'Yaml_instances_3/rand_size4_inst2.yaml'
+out-file: 'Yaml_instances_3/rand_size4_inst2_sol.out'
+result-folder: 'Yaml_instances_3/results'

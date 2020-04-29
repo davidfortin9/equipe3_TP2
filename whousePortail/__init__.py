@@ -31,8 +31,7 @@ Paramètres optionnels:
 import getopt
 import sys
 import os
-import __init__ as init
-import utils
+#import utils
 #from pathlib import Path
 
 class Usage(Exception):
@@ -178,4 +177,4 @@ def main(argv=None):
         return 2       
 
 if __name__ == "__main__":
-    sys.exit(prompt_menu())        
+    sys.exit(main())        

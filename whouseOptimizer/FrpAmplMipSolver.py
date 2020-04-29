@@ -1,11 +1,11 @@
-import solver 
-import fastroute_problem as frp 
-import route_solution as rsol
+import whouseOptimizer.solver as sl 
+import whouseOptimizer.fastroute_problem as frp 
+import whouseOptimizer.route_solution as rsol
 import amplpy
 import sys
 import os
 
-class FrpAmplMipSolver(solver.Solver):
+class FrpAmplMipSolver(sl.Solver):
 
     def __init__(self, prob, k, b, d, N):
         super(FrpAmplMipSolver, self).__init__()

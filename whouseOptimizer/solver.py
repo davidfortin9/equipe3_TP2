@@ -1,5 +1,5 @@
-import problem
-import solution
+import whouseOptimizer.problem
+import whouseOptimizer.solution as sl
 
 import time 
 
@@ -49,4 +49,4 @@ class Solver:
 
         # Retourner la solution
         # TODO Le code ci-dessous est un code temporaire
-        return solution.Solution()
+        return sl.Solution()
