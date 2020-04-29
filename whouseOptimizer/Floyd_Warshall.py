@@ -1,11 +1,11 @@
 
-
-# Floyd Warshall Algorithm in python
-
-# defining the number of vertices
 nV = 4
 
 INF = 999
+
+  # Instancier le modèle
+dist_matrix = prob._dist_matrix
+
 
 def floydWarshall(graph):
     dist = list(map(lambda i : list(map(lambda j : j, i)), graph) )
@@ -25,11 +25,14 @@ def printSolution(dist):
                 print(dist[i][j], end ="  ")  
         print(" ")
 
+#INF si il n'y a pas d'arc entre i et j
+#0 quand i = j
 graph = [[0, 3, INF, 5],
         [2, 0, INF, 4],
         [INF, 1, 0, INF],
-        [INF, INF, 2, 0]]; 
-floydWarshall(graph);
+        [INF, INF, 2, 0]]
+
+floydWarshall(graph)
 
 
 
