@@ -1,7 +1,7 @@
 
 import math
 from tkinter import Canvas, Tk
-import whouse
+import whouse_modules.whouse as whouse
 import sqlite3
 
 def get_arcs():
