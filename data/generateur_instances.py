@@ -24,11 +24,11 @@ def dump_instance_yaml(matrix = None,
         
 
 np.random.seed(253785)
-for inst_size in range(8, 9):
-    for rand_inst_no in range (1, 4):
+for inst_size in range(50, 51):
+    for rand_inst_no in range (1, 6):
         instance = gen_random_instance(n=inst_size,
-                                        min_value=5.,
-                                        max_value=45.)
+                                        min_value=0.,
+                                        max_value=20.)
         instance_filename = 'mip' + '_size' + str(inst_size) \
             + '_inst' + str(rand_inst_no) + '.yaml'
         dump_instance_yaml(matrix=instance,
