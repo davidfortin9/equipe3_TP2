@@ -1,7 +1,8 @@
-import frp_rand_solver as frprs 
-import fastroute_problem as frp 
-import route_solution as rsol 
-import FrpAmplMipSolver as frprsampl
+import whouseOptimizer.frp_rand_solver as frprs 
+import whouseOptimizer.fastroute_problem as frp 
+import whouseOptimizer.route_solution as rsol 
+import whouseOptimizer.FrpAmplMipSolver as frprsampl
+
 
 
 dist_matrix = [[0, 20, 30, 40], [20, 0, 30, 5], [30, 30, 0, 10], [40, 5, 10, 0]]

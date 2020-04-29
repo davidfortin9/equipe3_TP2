@@ -3,6 +3,7 @@ import whouseOptimizer.problem as prob
 import copy
 
 
+
 class FastRouteProb(prob.Problem):
 
     def __init__(self, dist_matrix=[[]]):

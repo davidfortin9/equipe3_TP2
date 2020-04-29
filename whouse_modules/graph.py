@@ -1,6 +1,6 @@
-import whouse
+import whouse_modules.whouse as whouse
 import networkx as nx
-import whousedesign as wsd 
+import whouse_modules.whousedesign as wsd 
 import matplotlib.pyplot as plt
 
 def nx_create(arcs, nodes):

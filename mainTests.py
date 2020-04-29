@@ -1,16 +1,16 @@
 '''On va utiliser ce fichier comme point d'entrée pour le GUI. On va utiliser __main__ 
     pour l'interface en ligne de commande pour les tests en lots.'''
 
-import whousedesign as wsd 
-import whouse
-import graph
-import generator as gen 
+import whouse_modules.whousedesign as wsd 
+import whouse_modules.whouse as whouse
+import whouse_modules.graph as graph
+import whouse_modules.generator as gen 
 from datetime import datetime
-import orders
-import pickseq
-import locap
-import FrpAmplMipSolver as FrpAmpl 
-import fastroute_problem as frp
+import whouse_modules.orders as orders
+import whouse_modules.pickseq as pickseq
+import whouse_modules.locap as locap
+import whouseOptimizer.FrpAmplMipSolver as FrpAmpl 
+import whouseOptimizer.fastroute_problem as frp
 
 
 arcs = wsd.get_arcs()
