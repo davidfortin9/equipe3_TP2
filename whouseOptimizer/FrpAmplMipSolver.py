@@ -22,14 +22,14 @@ class FrpAmplMipSolver(sl.Solver):
     def solve(self): 
         if type(self.prob) == frp.FastRouteProb:
             # Création du modèle
-            ampl_path = os.path.normpath('C:\\Users\\Utilisateur\\Documents\\BAA\\Hiver 2020\\MQT-2100\\ampl_mswin64 (2)')
+            ampl_path = os.path.normpath('C:/Users/David/Documents/AMPL/ampl_mswin64')
             #'C:\Users\maria\Downloads\ampl_mswin64'
             #'C:/Users/David/Documents/AMPL/ampl_mswin64'
             ampl_env = amplpy.Environment(ampl_path)
             ampl = amplpy.AMPL(ampl_env)
             ampl.setOption('solver', 'gurobi')
             ampl.setOption('gurobi_options', 'timelim 2000 outlev 1')
-            dir_ampl = os.path.normpath('C:\\Users\\Utilisateur\\Documents\\BAA\\Hiver 2020\\MQT-2100\\Travaux\\TP2\\Git')
+            dir_ampl = os.path.normpath('C:/Users/David/Desktop/equipe3_TP2/equipe3_TP2/Ampl')
             #'C:\Users\maria\Desktop\SIAD\equipe3_TP2\equipe3_TP2'
             #'C:/Users/David/Desktop/equipe3_TP2/equipe3_TP2'
             ampl.read(os.path.join(dir_ampl, 'VRP.mod'))

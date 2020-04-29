@@ -1,4 +1,4 @@
-import whousedesign as wsd 
+import whouse_modules.whousedesign as wsd 
 
 class whouse:
 

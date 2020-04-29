@@ -1,9 +1,9 @@
 #http://www.warehouselayout.org/sites/warehouselayout.org/files/pickseq.py.txt
 
 import networkx as nx 
-import whousedesign as wsd 
-import whouse
-import graph
+import whouse_modules.whousedesign as wsd 
+import whouse_modules.whouse
+import whouse_modules.graph
 
 def sku_to_node_pick(sku_pick, slots, start_node_id):
 	print("Creating a Node list from the SKU list...")
