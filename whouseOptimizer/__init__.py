@@ -19,11 +19,12 @@ class Optimizer():
         self.mip_model = None
         self.data = None
         self.prob = None
-#        self.k = None
-#        self.d = None
-#        self.b = None
-#        self.N = None
-#        self.dist_matrix = None
+        self.K = None
+        self.d = None
+        self.B = None
+        self.n = None
+        self.dist_matrix = None
+        self.whouse = None
 
     def optimize(self, params):
         
@@ -35,11 +36,12 @@ class Optimizer():
         self.mip_model = params['mip_model']
         self.data = params['data']
 #        self.prob = params['prob']
-#        self.k = params['k']
-#        self.d = params['d']
-#        self.b = params['b']
-#        self.N = params['N']
-#        self.dist_matrix = params['c']
+        self.K = params['K']
+        self.d = params['d']
+        self.B = params['B']
+        self.n = params['n']
+        self.dist_matrix = params['c']
+#        self.whouse = params[]
 
 #        frp_inst = frp.FastRouteProb(d = self.d, B = self.b, N = self.N, dist_matrix = self.dist_matrix, K=self.k)
 
@@ -57,21 +59,23 @@ class Optimizer():
     
     def solveMip(self):
         
-        frp_inst = frp.FastRouteProb(self.data)
+        frp_inst = frp.FastRouteProb(K=self.K, d=self.d, B=self.B, N=self.n, dist_matrix=self.dist_matrix, whouse=None)
+        rsol_inst = rsol.Route(solvedProblem=frp_inst, visit_sequence=[])
+        
         # Run
         print('Problème actuel:')
         print(str(frp_inst))
         print('Résoudre le problème avec FrpAmplMipSolver')
-        frp_solver = FrpAmpl.FrpAmplMipSolver(self.prob)    #(self.data, self.k, self.d, self.b, self.N)
+        frp_solver = FrpAmpl.FrpAmplMipSolver(self.prob)    
         frp_solver.max_time_sec = self.time
         frp_sol = frp_solver.solve()
 
         status = 1
-        #frp_valid = Route.validate(self)
-        if rsol.validate() == False:
+
+        if rsol.Route.validate(rsol_inst) == False:
             status = 3
 
-        return { 'Route':str(frp_sol), 'Valeur': str(rsol.evaluate())} , status  
+        return { 'Route':str(frp_sol), 'Valeur': str(rsol.Route.evaluate(rsol_inst))} , status  
 
 
     def solveRand(self):
@@ -89,7 +93,7 @@ class Optimizer():
         if frp_sol.validate() == False:
             status = 3
 
-        return { 'Route':str(frp_sol), 'Valeur': str(frp_sol.evaluate())} , status          
+        return { 'Route':str(frp_sol), 'Valeur': str(frp_sol.evaluate())}, status          
     
     
     def shortDist(self):
@@ -103,9 +107,11 @@ class Optimizer():
         frp_solver.max_time_sec = self.time
         visit_sequence = frp_solver.short_dist_solver(frp_inst)
 
-        rsol_inst = rsol.Route(solvedProblem=frp_inst.prob, visit_sequence=visit_sequence)
+        rsol_inst = rsol.Route(solvedProblem=frp_inst, visit_sequence=visit_sequence)
 
+        status = 1
         if rsol.Route.validate(rsol_inst) == False:
-            print('''La solution n'est pas valide''')
+            status = 3
 
-        return { 'Route':str(visit_sequence), 'Valeur': str(rsol.Route.evaluate(rsol_inst))}
+
+        return { 'Route':str(visit_sequence), 'Valeur': str(rsol.Route.evaluate(rsol_inst))}, status
