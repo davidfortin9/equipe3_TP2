@@ -23,6 +23,7 @@ class Optimizer():
         self.d = None
         self.b = None
         self.N = None
+        self.dist_matrix = None
 
     def optimize(self, params):
         
@@ -38,6 +39,9 @@ class Optimizer():
         self.d = params['d']
         self.b = params['b']
         self.N = params['N']
+        self.dist_matrix = params['c']
+
+        frp_inst = frp.FastRouteProb(d = self.d, B = self.b, N = self.N, dist_matrix = self.dist_matrix, K=self.k)
 
         if int(self.solver) == 1 :
             sol, sol_status = self.solveMip()
@@ -46,7 +50,7 @@ class Optimizer():
             sol, sol_status = self.solveRand()
 
         elif int(self.solver) == 3:
-            sol, sol_status = self.shortDist()   
+            sol, sol_status = self.shortDist(frp_inst)   
 
         return sol, sol_status               
 
@@ -58,7 +62,7 @@ class Optimizer():
         print('Problème actuel:')
         print(str(frp_inst))
         print('Résoudre le problème avec FrpAmplMipSolver')
-        frp_solver = FrpAmpl.FrpAmplMipSolver(self.data, self.k, self.d, self.b, self.N)
+        frp_solver = FrpAmpl.FrpAmplMipSolver()
         frp_solver.max_time_sec = self.time
         frp_sol = frp_solver.solve()
 
@@ -67,7 +71,7 @@ class Optimizer():
         if rsol.validate() == False:
             status = 3
 
-        return { 'Route':str(frp_sol), 'Valeur': str(frp_sol.evaluate())} , status  
+        return { 'Route':str(frp_sol), 'Valeur': str(rsol.evaluate())} , status  
 
 
     def solveRand(self):
@@ -88,19 +92,19 @@ class Optimizer():
         return { 'Route':str(frp_sol), 'Valeur': str(frp_sol.evaluate())} , status          
     
     
-    def shortDist(self):
+    def shortDist(self, frp_inst):
 
-        frp_inst = frp.FastRouteProb(self.data)
         # Run
         print('Problème actuel:')
         print(str(frp_inst))
         print('Résoudre le problème avec le solveur short distance')
-        frp_solver = sds.ShortDistance(sku_pick=, whouse=, node_pick=, start_node_id=)
+        frp_solver = sds.ShortDistance()
         frp_solver.max_time_sec = self.time
-        frp_sol = frp_solver.short_dist_solver(frp_inst)
+        visit_sequence = frp_solver.short_dist_solver(frp_inst)
 
-        status = 1
-        if frp_sol.validate() == False:
-            status = 3
+        rsol_inst = rsol.Route(solvedProblem=frp_inst.prob, visit_sequence=visit_sequence)
 
-        return { 'Route':str(frp_sol), 'Valeur': str(frp_sol.evaluate())} , status
+        if rsol.Route.validate(rsol_inst) == False:
+            print('''La solution n'est pas valide''')
+
+        return { 'Route':str(visit_sequence), 'Valeur': str(rsol.Route.evaluate(rsol_inst))}
