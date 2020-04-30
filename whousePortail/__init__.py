@@ -25,9 +25,9 @@ Paramètres optionnels:
                             1: Sortie minimale
                             2: Sortie détaillée
                             3: Niveau débogage
-  -s, --solver=<S>          1:Solveur AmplMip
-                            2:Solver Random
-                            3:
+  -s, --solver=<S>          1:Solveur Mip Ampl
+                            2:Solveur Random
+                            3:Solveur Short distance
 
 """
 
