@@ -13,6 +13,7 @@ class whouse:
         self.arcs = arcs
         self.nodes = nodes
         self.slots = slots
+        
 
     
     

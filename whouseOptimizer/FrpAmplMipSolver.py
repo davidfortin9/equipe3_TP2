@@ -7,14 +7,9 @@ import os
 
 class FrpAmplMipSolver(sl.Solver):
 
-    def __init__(self, prob, k, b, d, N):
+    def __init__(self, prob):
         super(FrpAmplMipSolver, self).__init__()
         self.prob = prob
-        self.k = k
-        self.d = d
-        self.b = b
-        self.N = N
-
 
     def __str__(self):
         pass
@@ -41,25 +36,25 @@ class FrpAmplMipSolver(sl.Solver):
             
             # param n
             n = ampl.getParameter('n')
-            n.set(self.N)
+            n.set(self.prob.N)
 
             liste_n = []
-            for i in range(1, self.N + 1):
+            for i in range(1, self.prob.N + 1):
                 liste_n.append(i)
 
             liste_I = []
             liste_J = []
-            for i in range(1, self.N+1):
+            for i in range(1, self.prob.N+1):
                 liste_I.append(i)
                 liste_J.append(i)
 
             # param K
             K = ampl.getParameter('K')
-            K.set(self.k)
+            K.set(self.prob.K)
 
             # param B
             B = ampl.getParameter('B')
-            B.set(self.b)
+            B.set(self.prob.B)
 
             df = amplpy.DataFrame('I')
             df.setColumn('I', liste_n)
@@ -81,7 +76,7 @@ class FrpAmplMipSolver(sl.Solver):
 
             #param d
             df = amplpy.DataFrame(('I'), 'd')
-            df.setValues(self.d) 
+            df.setValues(self.prob.d) 
 
             ampl.setData(df)
             
@@ -89,42 +84,19 @@ class FrpAmplMipSolver(sl.Solver):
 
             # Extraction de la visit sequence
             x = ampl.getVariable('x').getValues()
-            x.val = list(x.getColumn('x.val'))
-            x.index0 = list(x.getColumn('index0'))
-            x.index1 = list(x.getColumn('index1'))
-            sol = x
-            Z = (ampl.getObjective('Z').getValues())
 
-            return sol, Z
-
-
-"""
-            start_sequences = []
-            count = 0
-            for val in x.val[:self.N-1]:
-                count = count + 1
-                if val == 1:
-                    start_sequences.append(count)
-    
-            #print(visit_sequence_temp)
-
-            
-                if i == 1:
-                    visit_sequence_temp.append((x.index0[count], x.index1[count]))
-                count = count + 1
-    
-            # On retourne visit_sequence dans sa forme requise (liste)
-            depart = visit_sequence_temp[0][1]
             visit_sequence = []
-            visit_sequence.append(visit_sequence_temp[0][1])
-            for i in visit_sequence_temp:
-                for j in visit_sequence_temp[1:]:
-                    if depart == j[0]:
-                        depart = j[1]
-                        visit_sequence.append(depart)
-            sol = rsol.Route()
-            sol.visit_sequence = visit_sequence
-            Z = (ampl.getObjective('Z').getValues())
-            """
         
-        
+            for row in x:
+                l = []
+                if row[0] == 1. and row[2] == 1:
+                    l.insert(0, 1.)
+                    l.insert(1, row[1])
+                    visit_sequence.append(l)
+
+            for row in x:
+                for r in visit_sequence:
+                    if row[0] == r[-1] and row[2] == 1:
+                        r.append(row[1])
+
+        return visit_sequence
