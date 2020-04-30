@@ -7,16 +7,24 @@ def short_dist_solver(sku_pick, whouse, node_pick, start_node_id):
     node_pick = pickseq.sku_to_node_pick(sku_pick, whouse.slots, whouse.start_node_id)
     dist_matrix = pickseq.create_dist_matrix(node_pick, start_node_id, whouse_graph)
 
-    seq = []
-    Z = 0
-    start_node_id = node_pick[0]
-    #associer le node à la bonne liste dans la distance matrix
-    for node in node_pick:
-        for index, dist in enumerate(dist_matrix, 1):
-            node_x = index
-            if node_x == node_pick[node]
-        #print(seq)
-        #print(Z)
+    curr_node_id = node_pick.pop(0) # Parce que je suppose qu'on commence au premier objet dans la liste node_pick
+    visit = [curr_node_id]
+    while len(node_pick) - 1:
+
+        min_dist = -1
+        min_dist_node = -1
+        for node in node_pick:
+            if min_dist >= dist_matrix[curr_node_id][node] or min_dist_node == -1:
+                min_dist  = dist_matrix[curr_node_id][node]
+                min_dist_node = node
+        curr_node_id = min_dist_node
+        node_pick.remove(min_dist_node)
+        visit.append(curr_node_id)
+        print('curr_node_id = ')
+        print(curr_node_id)
+        print('node_pick = ')
+        print(node_pick)
+    visit.append(node_pick[-1])
 
     # Calcule la distance entre le start_node et tous les autres noeuds
     # Ajoute le noeud à la pickseq
