@@ -34,8 +34,7 @@ Paramètres optionnels:
 import getopt
 import sys
 import os
-#import utils
-#from pathlib import Path
+
 
 class Usage(Exception):
    def __init__(self, msg):
@@ -76,8 +75,6 @@ def main(argv=None):
                                         'd=',
                                         'N='])
 
-            # :TODO: Retirer la ligne suivante qui
-            # permet de visualiser le contenu d'opts
             print(opts)
         
             for o, a in opts:
