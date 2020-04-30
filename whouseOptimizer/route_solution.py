@@ -6,10 +6,12 @@ import sys
 
 class Route(sol.Solution):
 
-    def __init__(self, solvedProblem = frp.FastRouteProb(), visit_sequence=list()):
+    def __init__(self, solvedProblem = frp.FastRouteProb(), 
+                visit_sequence=list()):
         super(Route, self).__init__()
         self.visit_sequence = visit_sequence
         self.prob = solvedProblem
+        self.proved_optimal = False
 
     def __str__(self):
         tmp_str = ', '.join([str(i) for i in self.visit_sequence])
@@ -35,26 +37,20 @@ class Route(sol.Solution):
 
     def evaluate(self):
         if self.validate() == False:
-            # Pour nous une solution non réalisable aura une très grande
-            # valeur de fonction objectif
+            # Pour nous, une solution non réalisable aura une très grande
+            # valeur de fonction objectif.
             # (rappel: nous minimisons l'objectif)
             return sys.float_info.max
-
-        obj_val = 0.
-        count = 0
+        obj_val = 0
+     
         for seq in self.visit_sequence:
-            obj_val_temp = 0.
-            
-            if count < len(seq) - 1:
-                curr_source = seq[count]
-                curr_destination = seq[count + 1]
-                print(curr_source)
-                print('***********************')
-                print(curr_destination)
-                curr_distance = self.prob._dist_matrix[count]
-                obj_val_temp = obj_val_temp + curr_distance
-                count = count + 1
-                obj_val = obj_val + obj_val_temp
+            for i in range(len(seq)-1):
+                curr_source = seq[i]
+                curr_destination = seq[i + 1]
+                curr_distance = self.prob._dist_matrix[curr_source-1][curr_destination-1]
+                
+                print(curr_distance)
+                obj_val = obj_val + curr_distance
 
         return obj_val
         

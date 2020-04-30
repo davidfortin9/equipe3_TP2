@@ -18,7 +18,7 @@ class FrpRandSolver(sl.Solver):
 
         # Créer une première solution à partir du problème
         curr_rsol = rsol.Route(solvedProblem=prob)
-        n_locations = curr_rsol.problem.count_locations()
+        n_locations = curr_rsol.prob.count_locations()
         all_locations = range(0, n_locations)
         curr_rsol.visit_sequence = np.random.permutation(all_locations)
         if (self.verbose > 1):
