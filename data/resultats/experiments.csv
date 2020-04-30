@@ -1,0 +1,6 @@
+ampl_path,mip_model_path,mip_model,time,verbose,solver,k,b,d,N,in-file,out-file,status,obj_val
+,,VRP.mod,60,1,2,1,150,{'2:50': '', '3:50': '', '4:50': '', '5:50': '', '6:50': '', '7:50': '', '8:50': ''},8,data/petit_entrepot/mip_size8_inst1.yaml,data/resultats/petit_entrepot/mip_size8_inst1_sol.out,1,26.0
+,,VRP.mod,60,1,2,1,150,{'2:50': '', '3:50': '', '4:50': '', '5:50': '', '6:50': '', '7:50': '', '8:50': ''},8,data/petit_entrepot/mip_size8_inst2.yaml,data/resultats/petit_entrepot/mip_size8_inst2_sol.out,1,37.0
+,,VRP.mod,60,1,2,1,150,{'2:50': '', '3:50': '', '4:50': '', '5:50': '', '6:50': '', '7:50': '', '8:50': ''},8,data/petit_entrepot/mip_size8_inst3.yaml,data/resultats/petit_entrepot/mip_size8_inst3_sol.out,1,37.0
+,,VRP.mod,60,1,2,1,150,{'2:50': '', '3:50': '', '4:50': '', '5:50': '', '6:50': '', '7:50': '', '8:50': ''},8,data/petit_entrepot/mip_size8_inst4.yaml,data/resultats/petit_entrepot/mip_size8_inst4_sol.out,1,35.0
+,,VRP.mod,60,1,2,1,150,{'2:50': '', '3:50': '', '4:50': '', '5:50': '', '6:50': '', '7:50': '', '8:50': ''},8,data/petit_entrepot/mip_size8_inst5.yaml,data/resultats/petit_entrepot/mip_size8_inst5_sol.out,1,34.0

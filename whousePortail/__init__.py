@@ -25,6 +25,9 @@ Paramètres optionnels:
                             1: Sortie minimale
                             2: Sortie détaillée
                             3: Niveau débogage
+  -s, --solver=<S>          1:Solveur AmplMip
+                            2:Solver Random
+                            3:
 
 """
 
@@ -66,11 +69,11 @@ def main(argv=None):
                                         'in-file=',
                                         'out-file=',
                                         'time=',
-                                        'verbose='
-                                        'solver='
-                                        'k='
-                                        'b='
-                                        'd='
+                                        'verbose=',
+                                        'solver=',
+                                        'k=',
+                                        'b=',
+                                        'd=',
                                         'N='])
 
             # :TODO: Retirer la ligne suivante qui
@@ -121,8 +124,8 @@ def main(argv=None):
                     solver = int(a)
                     if solver < 0:
                         solver = 0
-                    elif solver > 1:
-                        solver = 1
+                    elif solver > 3:
+                        solver = 3
                     params['solver'] = solver
                 elif o in ('-k'):
                     if not a.isnumeric():

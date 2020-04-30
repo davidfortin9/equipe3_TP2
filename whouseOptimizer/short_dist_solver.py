@@ -1,8 +1,23 @@
 import whouse_modules.pickseq as pickseq
 import whouse_modules.whouse as whouse
 
-def short_dist_solver(sku_pick, whouse):
-    node_pick = pickseq.sku_to_node_pick(sku_pick, whouse.slots(), whouse.start_node_id)
+dist_matrix1 = [[0, 20, 30, 40], [20, 0, 30, 5], [30, 30, 0, 10], [40, 5, 10, 0]]
+
+def short_dist_solver(sku_pick, whouse, node_pick, start_node_id):
+    node_pick = pickseq.sku_to_node_pick(sku_pick, whouse.slots, whouse.start_node_id)
+    dist_matrix = pickseq.create_dist_matrix(node_pick, start_node_id, whouse_graph)
+
+    seq = []
+    Z = 0
+    start_node_id = node_pick[0]
+    #associer le node à la bonne liste dans la distance matrix
+    for node in node_pick:
+        for index, dist in enumerate(dist_matrix, 1):
+            node_x = index
+            if node_x == node_pick[node]
+        #print(seq)
+        #print(Z)
+
     # Calcule la distance entre le start_node et tous les autres noeuds
     # Ajoute le noeud à la pickseq
     # Ajoute la distance à la obj value
@@ -19,14 +34,5 @@ def short_dist_solver(sku_pick, whouse):
     # 
 
 
-
-graph = [
-    [0, inf, inf, -3],
-    [inf, 0, inf, 8],
-    [inf, 4, 0, -2],
-    [5, inf, 3, 0]
-]
-
-print(floyd_warshall(graph))
 
 
