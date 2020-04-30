@@ -13,7 +13,7 @@ def short_dist_solver(sku_pick, whouse, node_pick, start_node_id):
     for node in node_pick:
         for n, dist in enumerate(dist_matrix, 1):
             if node == n:
-                Z = Z + min(dist_matrix[n])
+                Z = Z + min(dist_matrix[dist])
                 seq.append(node)
         
 
