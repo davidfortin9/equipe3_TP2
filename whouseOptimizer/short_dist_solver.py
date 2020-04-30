@@ -9,14 +9,12 @@ def short_dist_solver(sku_pick, whouse, node_pick, start_node_id):
 
     seq = []
     Z = 0
+    start_node_id = node_pick[0]
     #associer le node à la bonne liste dans la distance matrix
     for node in node_pick:
         for index, dist in enumerate(dist_matrix, 1):
-            if node == index:
-                dist_to_add = dist_matrix[index]
-                Z = Z + min(dist_to_add[dist])
-                seq.append(node)
-        
+            node_x = index
+            if node_x == node_pick[node]
         #print(seq)
         #print(Z)
 
