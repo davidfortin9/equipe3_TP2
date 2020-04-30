@@ -50,7 +50,7 @@ class Optimizer():
             sol, sol_status = self.solveRand()
 
         elif int(self.solver) == 3:
-            sol, sol_status = self.shortDist()   
+            sol, sol_status = self.shortDist(frp_inst)   
 
         return sol, sol_status               
 
