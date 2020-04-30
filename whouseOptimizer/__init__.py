@@ -68,7 +68,7 @@ class Optimizer():
 
         status = 1
         #frp_valid = Route.validate(self)
-        if rsol.validate() == False:
+        if frp_sol.validate() == False:
             status = 3
 
         return { 'Route':str(frp_sol), 'Valeur': str(rsol.evaluate())} , status  
