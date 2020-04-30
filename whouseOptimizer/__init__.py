@@ -2,6 +2,7 @@ import whouseOptimizer.FrpAmplMipSolver as FrpAmpl
 import whouseOptimizer.fastroute_problem as frp
 import whouseOptimizer.route_solution as rsol
 import whouseOptimizer.frp_rand_solver as frprs
+import whouseOptimizer.short_dist_solver as sds
 
 import os
 from whousePortail.utils import Utils
@@ -44,6 +45,9 @@ class Optimizer():
         elif int(self.solver) == 2 :
             sol, sol_status = self.solveRand()
 
+        elif int(self.solver) == 3:
+            sol, sol_status = self.shortDist()   
+
         return sol, sol_status               
 
     
@@ -83,4 +87,20 @@ class Optimizer():
 
         return { 'Route':str(frp_sol), 'Valeur': str(frp_sol.evaluate())} , status          
     
-    #TODO: Coder pour le solver Floyd Warshall
+    
+    def shortDist(self):
+
+        frp_inst = frp.FastRouteProb(self.data)
+        # Run
+        print('Problème actuel:')
+        print(str(frp_inst))
+        print('Résoudre le problème avec le solveur short distance')
+        frp_solver = sds.ShortDistance(sku_pick=, whouse=, node_pick=, start_node_id=)
+        frp_solver.max_time_sec = self.time
+        frp_sol = frp_solver.short_dist_solver(frp_inst)
+
+        status = 1
+        if frp_sol.validate() == False:
+            status = 3
+
+        return { 'Route':str(frp_sol), 'Valeur': str(frp_sol.evaluate())} , status
