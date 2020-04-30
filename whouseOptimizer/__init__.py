@@ -23,6 +23,7 @@ class Optimizer():
         self.d = None
         self.b = None
         self.N = None
+        self.dist_matrix = None
 
     def optimize(self, params):
         
@@ -38,8 +39,9 @@ class Optimizer():
         self.d = params['d']
         self.b = params['b']
         self.N = params['N']
+        self.dist_matrix = params['dist_matrix']
 
-        frp_inst = frp.FastRouteProb(d = self.d, B = self.b, )
+        frp_inst = frp.FastRouteProb(d = self.d, B = self.b, N = self.N, dist_matrix = self.dist_matrix, K=self.k)
 
         if int(self.solver) == 1 :
             sol, sol_status = self.solveMip()
