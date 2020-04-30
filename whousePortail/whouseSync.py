@@ -9,7 +9,6 @@ from .utils import Utils
 
 from whouseOptimizer import Optimizer as Opt
 
-from whousePortail import config
 
 class WhouseSync():
     def __init__(self, params=None):
@@ -21,8 +20,7 @@ class WhouseSync():
         self.config_filename = None
         self.params = dict()
         self.initParams()
-#        self.config_filename = config.Config.DEFAULT_CONFIG_FILE
-#        self.load_configuration(config.Config.DEFAULT_CONFIG_FILE)
+        
         if params is not None:
             self.load_configurations(params)
         
