@@ -15,7 +15,8 @@ def short_dist_solver(sku_pick, whouse, node_pick, start_node_id):
             if node == n:
                 Z = Z + min(dist_matrix[dist])
                 seq.append(node)
-        
+        print(seq)
+        print(Z)
 
     # Calcule la distance entre le start_node et tous les autres noeuds
     # Ajoute le noeud à la pickseq
