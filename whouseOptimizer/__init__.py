@@ -1,6 +1,7 @@
 import whouseOptimizer.FrpAmplMipSolver as FrpAmpl
 import whouseOptimizer.fastroute_problem as frp
 import whouseOptimizer.route_solution as rsol
+import whouseOptimizer.frp_rand_solver as frprs
 
 import os
 from whousePortail.utils import Utils
@@ -40,6 +41,11 @@ class Optimizer():
         if int(self.solver) == 1 :
             sol, sol_status = self.solveMip()
 
+        elif int(self.solver) == 2 :
+            sol, sol_status = self.solveRand()
+
+        return sol, sol_status               
+
     
     def solveMip(self):
         
@@ -57,7 +63,24 @@ class Optimizer():
         if rsol.validate() == False:
             status = 3
 
-        return { 'Route':str(frp_sol), 'Valeur': str(frp_sol.evaluate())} , status        
+        return { 'Route':str(frp_sol), 'Valeur': str(frp_sol.evaluate())} , status  
+
+
+    def solveRand(self):
+
+        frp_inst = frp.FastRouteProb(self.data)
+        # Run
+        print('Problème actuel:')
+        print(str(frp_inst))
+        print('Résoudre le problème avec le solveur Random')
+        frp_solver = frprs.FrpRandSolver()
+        frp_solver.max_time_sec = self.time
+        frp_sol = frp_solver.solve(frp_inst)
+
+        status = 1
+        if frp_sol.validate() == False:
+            status = 3
+
+        return { 'Route':str(frp_sol), 'Valeur': str(frp_sol.evaluate())} , status          
     
-    #TODO: Coder pour le solver random ou heuristique
-    #TODO: Coder pour le solver GOOGLE OR TOOLS
+    #TODO: Coder pour le solver Floyd Warshall
