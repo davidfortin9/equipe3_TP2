@@ -39,7 +39,7 @@ class Optimizer():
         self.d = params['d']
         self.b = params['b']
         self.N = params['N']
-        self.dist_matrix = params['dist_matrix']
+        self.dist_matrix = params['c']
 
         frp_inst = frp.FastRouteProb(d = self.d, B = self.b, N = self.N, dist_matrix = self.dist_matrix, K=self.k)
 
