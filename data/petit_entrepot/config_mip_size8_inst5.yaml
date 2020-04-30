@@ -4,7 +4,7 @@ mip_model: "VRP.mod"
 time: 60
 verbose: 1
 solver: 1
-k: 10
+k: 1
 b: 150
 d: {2:50,3:50,4:50,5:50,6:50,7:50,8:50}
 N: 8      

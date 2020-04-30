@@ -69,12 +69,14 @@ class FrpAmplMipSolver(sl.Solver):
             ampl.setData(df, 'J')
 
             #param c
+            c_dict = dict()
+            for i, I in enumerate(liste_I):
+                for j, J in enumerate(liste_J):
+                    if i != j:
+                        # Ajouter au dictionnaire
+                        c_dict[(I,J)] = dist_matrix[i][j]
             df = amplpy.DataFrame(('I', 'J'), 'c')
-            df.setValues({
-                (I,J): dist_matrix[i][j]
-                for i, I in enumerate(liste_I)
-                for j, J in enumerate(liste_J)
-                })
+            df.setValues(c_dict)
             ampl.setData(df)
 
             #param d

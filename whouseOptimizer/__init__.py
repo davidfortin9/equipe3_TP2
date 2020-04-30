@@ -1,6 +1,7 @@
 import whouseOptimizer.FrpAmplMipSolver as FrpAmpl
 import whouseOptimizer.fastroute_problem as frp
-import whouseOptimizer.route_solution as rsol 
+import whouseOptimizer.route_solution as rsol
+
 import os
 from whousePortail.utils import Utils
 from pathlib import Path
@@ -52,7 +53,8 @@ class Optimizer():
         frp_sol = frp_solver.solve()
 
         status = 1
-        if frp_sol.validate() == False:
+        #frp_valid = Route.validate(self)
+        if rsol.validate() == False:
             status = 3
 
         return { 'Route':str(frp_sol), 'Valeur': str(frp_sol.evaluate())} , status        
