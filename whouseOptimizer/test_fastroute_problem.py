@@ -1,5 +1,7 @@
 
+import unittest
 
+dist_matrix_small = 
 
 class TestFastRouteProb(unittest.TestCase):
     def test_init(self):

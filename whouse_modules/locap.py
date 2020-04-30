@@ -29,4 +29,6 @@ def coi(G, slots, line_item_sku, depot_node_id):
     for i in range(min(len(sku_index_list),len(slots))):
         del slots[i][-1]
         slots[i].append(sku_index_list[i][0])
+    print("Les emplacements les plus proches du noeud dépôt ont été assignés aux SKU les plus populaires")
+    print("Format: ['slot_id[str], node_id[int], new_SKU[str], quantity[int], old_SKU[str]")
     return slots
