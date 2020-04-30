@@ -19,11 +19,11 @@ class Optimizer():
         self.mip_model = None
         self.data = None
         self.prob = None
-        self.k = None
-        self.d = None
-        self.b = None
-        self.N = None
-        self.dist_matrix = None
+#        self.k = None
+#        self.d = None
+#        self.b = None
+#        self.N = None
+#        self.dist_matrix = None
 
     def optimize(self, params):
         
@@ -35,13 +35,13 @@ class Optimizer():
         self.mip_model = params['mip_model']
         self.data = params['data']
 #        self.prob = params['prob']
-        self.k = params['k']
-        self.d = params['d']
-        self.b = params['b']
-        self.N = params['N']
-        self.dist_matrix = params['c']
+#        self.k = params['k']
+#        self.d = params['d']
+#        self.b = params['b']
+#        self.N = params['N']
+#        self.dist_matrix = params['c']
 
-        frp_inst = frp.FastRouteProb(d = self.d, B = self.b, N = self.N, dist_matrix = self.dist_matrix, K=self.k)
+#        frp_inst = frp.FastRouteProb(d = self.d, B = self.b, N = self.N, dist_matrix = self.dist_matrix, K=self.k)
 
         if int(self.solver) == 1 :
             sol, sol_status = self.solveMip()
@@ -50,7 +50,7 @@ class Optimizer():
             sol, sol_status = self.solveRand()
 
         elif int(self.solver) == 3:
-            sol, sol_status = self.shortDist(frp_inst)   
+            sol, sol_status = self.shortDist()  #(frp_inst)   
 
         return sol, sol_status               
 
@@ -62,7 +62,7 @@ class Optimizer():
         print('Problème actuel:')
         print(str(frp_inst))
         print('Résoudre le problème avec FrpAmplMipSolver')
-        frp_solver = FrpAmpl.FrpAmplMipSolver()
+        frp_solver = FrpAmpl.FrpAmplMipSolver(self.prob)    #(self.data, self.k, self.d, self.b, self.N)
         frp_solver.max_time_sec = self.time
         frp_sol = frp_solver.solve()
 
@@ -92,8 +92,9 @@ class Optimizer():
         return { 'Route':str(frp_sol), 'Valeur': str(frp_sol.evaluate())} , status          
     
     
-    def shortDist(self, frp_inst):
+    def shortDist(self):
 
+        frp_inst = frp.FastRouteProb(self.data)
         # Run
         print('Problème actuel:')
         print(str(frp_inst))
