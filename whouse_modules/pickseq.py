@@ -15,7 +15,8 @@ def sku_to_node_pick(sku_pick, slots, start_node_id):
 			if len(slot)>2 and slot[2]==sku_id[2]:
 				node_pick.append(slot[1])
 				slot_pick.append(slot[0])
-	return node_pick,slot_pick
+	return node_pick
+	return slot_pick
 
 def create_dist_matrix(node_pick, start_node_id, whouse_graph):
 	dist_matrix=[]
