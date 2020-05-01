@@ -51,6 +51,7 @@ class Route(sol.Solution):
         obj_val = obj_val + curr_distance''' #Je crois que ça peut éliminer l'erreur np.int32 avec
                                             # le solveur Rand. Faudrais juste avoir la matrice
                                             # en integer.
+                                            #https://stackoverflow.com/questions/43007100/python-typeerror-object-of-type-numpy-int32-has-no-len
         
 
         for seq in self.visit_sequence:
