@@ -19,21 +19,19 @@ class Route(sol.Solution):
         return str(tmp_str)
         
     def validate(self):
-        location_list = list(range(0, self.prob.count_locations()))
-        if sorted(self.visit_sequence) == location_list:
-            return True
-
-        # Vérifie que la capacité des pickers est respectée
-        for seq in self.visit_sequence:
-            load = 0
-            for i in seq:
-                if i != 1:
-                    load = load + self.prob.d[i]
-
-            if load <= self.prob.B:
-                return True
-
-        return False
+        # Vérifie que la visit séquence est une liste et que la capacité est respectée
+        if type(self.visit_sequence) == list:
+            for seq in self.visit_sequence:
+                load = 0
+                for i in seq:
+                    if i != 1:
+                        load = load + self.prob.d[int(i)]
+               
+                if load > self.prob.B:
+                    return False
+            return True     
+        else:
+            return False
 
     def evaluate(self):
         if self.validate() == False:
@@ -45,11 +43,9 @@ class Route(sol.Solution):
 
         for seq in self.visit_sequence:
             for i in range(len(seq)-1):
-                curr_source = seq[i]
-                curr_destination = seq[i + 1]
+                curr_source = int(seq[i])
+                curr_destination = int(seq[i + 1])
                 curr_distance = self.prob._dist_matrix[curr_source-1][curr_destination-1]
-                
-                print(curr_distance)
                 obj_val = obj_val + curr_distance
 
         return obj_val

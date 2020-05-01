@@ -40,51 +40,50 @@ class TestRoute(unittest.TestCase):
 
 
     def test_validate(self):
+        d = {2: 50, 3: 50, 4: 50, 5: 150}
         frp_inst = frp.FastRouteProb(d=d, B=B, N=N, dist_matrix=c, K=K, whouse=None)
         curr_rsol = rsol.Route(solvedProblem=frp_inst, visit_sequence=[[1.0, 2.0, 1.0], [1.0, 3.0, 4.0, 1.0], [1.0, 5.0, 1.0]])
 
-
-        # La séquence initiale devrait être invalide:
-        self.assertFalse(curr_rsol.validate())
-
         # Ces séquences devraient être invalides:
-        curr_rsol.visit_sequence = []
+        curr_rsol.visit_sequence = int()
         self.assertFalse(curr_rsol.validate())
-        curr_rsol.visit_sequence = [[1.0, 2.0, 1.0], [2.0, 3.0, 4.0, 1.0], [6.0, 5.0, 1.0]]
-        self.assertFalse(curr_rsol.validate())
-        curr_rsol.visit_sequence = [[1.0, 1.0, 1.0], [1.0, 1.0, 4.0, 1.0], [1.0, 1.0, 1.0]]
+        curr_rsol.visit_sequence = str()
         self.assertFalse(curr_rsol.validate())
         
 
         # Ces séquences devraient être valides:
-        curr_rsol.visit_sequence = [[1.0, 2.0, 1.0], [1.0, 3.0, 4.0, 1.0], [1.0, 5.0, 1.0]]
+        curr_rsol.visit_sequence = [[1.0, 3.0, 4.0, 1.0], [1.0, 2.0, 1.0], [1.0, 5.0, 1.0]]
         self.assertTrue(curr_rsol.validate())
         curr_rsol.visit_sequence = [[1.0, 3.0, 4.0, 1.0], [1.0, 2.0, 1.0], [1.0, 5.0, 1.0]]
         self.assertTrue(curr_rsol.validate())
 
+        # On change la d et on vérifie si les séquences sont toujours valides
+        d = {2: 100, 3: 100, 4: 50, 5: 150}
+        frp_inst = frp.FastRouteProb(d=d, B=B, N=N, dist_matrix=c, K=K, whouse=whouse_inst)
+        curr_rsol = rsol.Route(solvedProblem=frp_inst, visit_sequence=[[1.0, 2.0, 1.0], [1.0, 3.0, 4.0, 1.0], [1.0, 5.0, 1.0]])
+        # Ces séquences devraient encore être valides
+        curr_rsol.visit_sequence = [[1.0, 3.0, 4.0, 1.0], [1.0, 2.0, 1.0], [1.0, 5.0, 1.0]]
+        self.assertTrue(curr_rsol.validate())
+        curr_rsol.visit_sequence = [[1.0, 3.0, 4.0, 1.0], [1.0, 2.0, 1.0], [1.0, 5.0, 1.0]]
+        self.assertTrue(curr_rsol.validate())
 
+        d = {2: 160, 3: 160, 4: 50, 5: 150}
+        frp_inst = frp.FastRouteProb(d=d, B=B, N=N, dist_matrix=c, K=K, whouse=whouse_inst)
+        curr_rsol = rsol.Route(solvedProblem=frp_inst, visit_sequence=[[1.0, 2.0, 1.0], [1.0, 3.0, 4.0, 1.0], [1.0, 5.0, 1.0]])
+        # Cette séquence devrait devenir invalide
+        self.assertFalse(curr_rsol.validate())
+        
+        
     def test_evaluate(self):
-        frp_inst = frp.FastRouteProb(dist_matrix=c)
-        curr_rsol = rsol.Route(solvedProblem=frp_inst)
+        frp_inst = frp.FastRouteProb(d=d, B=B, N=N, dist_matrix=c, K=K, whouse=None)
+        curr_rsol = rsol.Route(solvedProblem=frp_inst, visit_sequence='[[1.0, 2.0, 1.0], [1.0, 3.0, 4.0, 1.0], [1.0, 5.0, 1.0]]')
+
 
         # La séquence initiale devrait devrait avoir une valeur de 
         # fonction objectif un grand float:
         self.assertAlmostEqual(curr_rsol.evaluate(), sys.float_info.max)
 
-        # Ces séquences sont invalides, leur valeur de fonction objectif
-        # devrait être un grand float:
-        curr_rsol.visit_sequence = []
-        self.assertAlmostEqual(curr_rsol.evaluate(), sys.float_info.max)
-        curr_rsol.visit_sequence = [0, 2, 3]
-        self.assertAlmostEqual(curr_rsol.evaluate(), sys.float_info.max)
-        curr_rsol.visit_sequence = [1, 1, 1, 1]
-        self.assertAlmostEqual(curr_rsol.evaluate(), sys.float_info.max)
-        curr_rsol.visit_sequence = [1, 1, 1, 1, 1]
-        self.assertAlmostEqual(curr_rsol.evaluate(), sys.float_info.max)
-
-        # Pour les séquencs valide, la valeur de fonction objectif devrait
-        # être correcte
-        curr_rsol.visit_sequence = [0, 1, 2, 3]
-        self.assertAlmostEqual(curr_rsol.evaluate(), 60)
-        curr_rsol.visit_sequence = [0, 2, 1, 3]
-        self.assertAlmostEqual(curr_rsol.evaluate(), 65)
+        curr_rsol = rsol.Route(solvedProblem=frp_inst, visit_sequence=[[1.0, 2.0, 1.0], [1.0, 3.0, 4.0, 1.0], [1.0, 5.0, 1.0]])
+        # La valeur de la fonction objective devrait être 96
+        self.assertEqual(curr_rsol.evaluate(), 96)
+       

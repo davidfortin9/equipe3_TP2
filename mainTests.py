@@ -27,14 +27,6 @@ print(str(slots))
 print("Une image de l'entrepôt devrait apparaître")
 print(str(wsd.draw_whouse(20,15,arcs,nodes)))
 
-
-whouse_inst = whouse.whouse(warehouse_width=15,
-                             warehouse_length=20,
-                              arcs=arcs,
-                              nodes=nodes,
-                              slots=slots)
-
-
 print("*** Test graph ***")
 whouse_graph = graph.nx_create(arcs, nodes)
 print("Une image du graph de l'entrepôt devrait apparaître")
@@ -163,7 +155,6 @@ FrpAmplInst = FrpAmpl.FrpAmplMipSolver(prob=frp_inst1)
 sol = FrpAmpl.FrpAmplMipSolver.solve(FrpAmplInst)
 print("La visit_sequence est: " + str(sol[0]))
 print("La valeur de la fonction objective est: " + str(sol[1]))
-
 
 
 # print('*** Test fastroute_problem ***')
