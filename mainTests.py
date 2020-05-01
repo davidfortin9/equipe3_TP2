@@ -144,7 +144,7 @@ print(locap.coi(G=whouse_graph, slots=slots, line_item_sku=line_item_list, depot
 
 print('*** Test FrpProblems ***')
 print('L\'instance devrait s\'afficher:')
-frp_inst1 = frp.FastRouteProb(dist_matrix=dist_matrix,B=150,d={2:50,3:50,4:50,5:150},K=4, N=5)
+frp_inst1 = frp.FastRouteProb(dist_matrix=dist_matrix,B=150,d={2:10,3:10,4:10,5:20,6:10,7:20,8:15,9:10,10:11,11:10,12:20},K=6, N=12)
 print('c[i,j] = ' + str(frp_inst1._dist_matrix))
 print('B = ' + str(frp_inst1.B))
 print('d = ' + str(frp_inst1.d))

@@ -4,17 +4,17 @@ import whouse_modules.whouse as whouse
 import whouseOptimizer.solver as sl
 from whouseOptimizer.fastroute_problem import FastRouteProb
 
-class ShortDistance(sl.Solver):
+class ShortDistance():
 
     def __init__(self,prob):
         super(ShortDistance).__init__()
         self.prob = prob
 
-    def short_dist_solver(self):
+    def solve(self):
         dist_matrix = self.prob._dist_matrix
-        node_pick = list(range(len(dist_matrix)))
-
-        curr_node_id = node_pick[0].pop(0) # Parce que je suppose qu'on commence au premier objet dans la liste node_pick
+        node_pick = list(range(1,len(dist_matrix)))
+        print(node_pick)
+        curr_node_id = node_pick.pop(0) # Parce que je suppose qu'on commence au premier objet dans la liste node_pick
         visit = [curr_node_id]
         while len(node_pick) - 1:
 
@@ -25,12 +25,8 @@ class ShortDistance(sl.Solver):
                     min_dist  = dist_matrix[curr_node_id][node]
                     min_dist_node = node
             curr_node_id = min_dist_node
-            node_pick[0].remove(min_dist_node)
+            node_pick.remove(min_dist_node)
             visit.append(curr_node_id)
-            print('curr_node_id = ')
-            print(curr_node_id)
-            print('node_pick = ')
-            print(node_pick)
         visit.append(node_pick[-1])
         return visit
 
