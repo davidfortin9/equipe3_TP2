@@ -24,7 +24,7 @@ class Optimizer():
         self.d = None
         self.B = None
         self.N = None
-        self.dist_matrix = None
+#        self.dist_matrix = None
         self.whouse = None
 
     def optimize(self, params):
@@ -41,7 +41,7 @@ class Optimizer():
         self.d = dict(params['d'])
         self.B = int(params['B'])
         self.N = int(params['N'])
-#        self.dist_matrix = [params['c']]
+#        self.dist_matrix = params['c']
         self.whouse = params['whouse']
 
 
@@ -59,7 +59,7 @@ class Optimizer():
     
     def solveMip(self):
         
-        frp_inst = frp.FastRouteProb(self.data, self.K, self.N, self.d, self.B, self.whouse)
+        frp_inst = frp.FastRouteProb(dist_matrix=self.data, B=self.B, d=self.d, K=self.K, N=self.N)
         rsol_inst = rsol.Route(solvedProblem=frp_inst, visit_sequence=[])
         
         # Run

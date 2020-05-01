@@ -50,8 +50,8 @@ class WhouseSync():
         if self.data is None:
             if self.params['in-file'] is not None:
                 self.load_data(self.params['in-file'])
-            if self.params['whouse'] is not None:   #Ajout pour voir si whouse load
-                self.load_data(self.params['whouse'])    
+#            if self.params['whouse'] is not None:   #Ajout pour voir si whouse load
+#                self.load_data(self.params['whouse'])    
             else:
                 return """
                     Aucune donnée n'est disponible
@@ -83,11 +83,11 @@ class WhouseSync():
             dict_matrix = Utils.loadJson(filename)
         elif Path(filename).suffix in ".txt":
             dict_matrix = Utils.loadText(filename)
-        elif Path(filename).suffix in '.py':
-            dict_matrix = Utils.loadText(filename) #Ajout pour voir si whouse load    
+#        elif Path(filename).suffix in '.py':
+#            dict_matrix = (filename) #Ajout pour voir si whouse load    
 
         # :TODO: Verifier si float crée une erreur: autrefois int
-        #self.data = [[ float(value) for value in liste] for liste in dict_matrix.values()]
+        self.data = [[ float(value) for value in liste] for liste in dict_matrix.values()]
 
     def set_data(self,data=None):
         self.data = data
@@ -122,6 +122,11 @@ class WhouseSync():
                 self.params['in-file'] = params['in-file']
         except KeyError:
             pass
+        try:
+            if params['whouse'] is not None:
+                self.params['whouse'] = params['whouse']
+        except KeyError:
+            pass        
         try:
             if params['out-file'] is not None:
                 self.params['out-file'] = params['out-file']
