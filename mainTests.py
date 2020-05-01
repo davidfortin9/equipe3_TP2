@@ -12,6 +12,7 @@ import whouse_modules.locap as locap
 import whouseOptimizer.FrpAmplMipSolver as FrpAmpl 
 import whouseOptimizer.fastroute_problem as frp
 import whouseOptimizer.route_solution as rsol 
+import whouseOptimizer.short_dist_solver as short_solver
 
 print("Cette section effectue des tests en partant le la base de donnée whouseDB.db")
 print('*** Tests whousedesign ***')

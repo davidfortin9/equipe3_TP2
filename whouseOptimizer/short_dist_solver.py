@@ -8,9 +8,9 @@ class ShortDistance(sl.Solver):
     def __init__(self):
         super(ShortDistance).__init__()
 
-    def short_dist_solver(self, frp_inst):
-        node_pick = sku_to_node_pick(frp_inst.sku_pick, frp_inst.whouse.slots, frp_inst.start_node_id)
-        dist_matrix = frp_inst._dist_matrix
+    def short_dist_solver(self, prob):
+        dist_matrix = prob._dist_matrix
+        node_pick = list(range(len(dist_matrix)))
 
         curr_node_id = node_pick[0].pop(0) # Parce que je suppose qu'on commence au premier objet dans la liste node_pick
         visit = [curr_node_id]
