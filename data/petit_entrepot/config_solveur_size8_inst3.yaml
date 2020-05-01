@@ -8,6 +8,6 @@ K: 1
 B: 150
 d: {2:50,3:50,4:50,5:50,6:50,7:50,8:50}
 n: 8      
-in-file:  "data/petit_entrepot/mip_size8_inst3.yaml"
-out-file: 'data/resultats/petit_entrepot/mip_size8_inst3_sol.out'
+in-file:  "data/petit_entrepot/solveur_size8_inst3.yaml"
+out-file: 'data/resultats/petit_entrepot/solveur_size8_inst3_sol.out'
 result-folder:  'data/resultats/'
