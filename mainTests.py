@@ -157,7 +157,10 @@ sol = FrpAmpl.FrpAmplMipSolver.solve(FrpAmplInst)
 print("La visit_sequence est: " + str(sol[0]))
 print("La valeur de la fonction objective est: " + str(sol[1]))
 
-
+print("*** Test short_dist_solver ***")
+short_dist_inst = short_solver.ShortDistance(prob=frp_inst1)
+sol = short_solver.ShortDistance.solve(short_dist_inst)
+print(sol)
 # print('*** Test fastroute_problem ***')
 # print(frp.FastRouteProb.count_locations(frp_inst1))
 

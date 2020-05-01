@@ -54,7 +54,7 @@ class TestRoute(unittest.TestCase):
         # Ces séquences devraient être valides:
         curr_rsol.visit_sequence = [[1.0, 3.0, 4.0, 1.0], [1.0, 2.0, 1.0], [1.0, 5.0, 1.0]]
         self.assertTrue(curr_rsol.validate())
-        curr_rsol.visit_sequence = [[1.0, 3.0, 4.0, 1.0], [1.0, 2.0, 1.0], [1.0, 5.0, 1.0]]
+        curr_rsol.visit_sequence = [[1.0, 2.0, 1.0], [1.0, 3.0, 4.0, 1.0], [1.0, 5.0, 1.0]]
         self.assertTrue(curr_rsol.validate())
 
         # On change la d et on vérifie si les séquences sont toujours valides
@@ -64,7 +64,7 @@ class TestRoute(unittest.TestCase):
         # Ces séquences devraient encore être valides
         curr_rsol.visit_sequence = [[1.0, 3.0, 4.0, 1.0], [1.0, 2.0, 1.0], [1.0, 5.0, 1.0]]
         self.assertTrue(curr_rsol.validate())
-        curr_rsol.visit_sequence = [[1.0, 3.0, 4.0, 1.0], [1.0, 2.0, 1.0], [1.0, 5.0, 1.0]]
+        curr_rsol.visit_sequence = [[1.0, 2.0, 1.0], [1.0, 3.0, 4.0, 1.0], [1.0, 5.0, 1.0]]
         self.assertTrue(curr_rsol.validate())
 
         d = {2: 160, 3: 160, 4: 50, 5: 150}

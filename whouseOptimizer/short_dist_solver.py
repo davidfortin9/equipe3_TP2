@@ -6,11 +6,12 @@ from whouseOptimizer.fastroute_problem import FastRouteProb
 
 class ShortDistance(sl.Solver):
 
-    def __init__(self):
+    def __init__(self,prob):
         super(ShortDistance).__init__()
+        self.prob = prob
 
-    def short_dist_solver(self, prob):
-        dist_matrix = prob._dist_matrix
+    def short_dist_solver(self):
+        dist_matrix = self.prob._dist_matrix
         node_pick = list(range(len(dist_matrix)))
 
         curr_node_id = node_pick[0].pop(0) # Parce que je suppose qu'on commence au premier objet dans la liste node_pick
