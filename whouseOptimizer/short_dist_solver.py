@@ -2,6 +2,7 @@ from whouse_modules.pickseq import sku_to_node_pick as sku_to_node_pick
 from whouse_modules.pickseq import create_dist_matrix as create_dist_matrix
 import whouse_modules.whouse as whouse
 import whouseOptimizer.solver as sl
+from whouseOptimizer.fastroute_problem import FastRouteProb
 
 class ShortDistance(sl.Solver):
 
@@ -10,7 +11,7 @@ class ShortDistance(sl.Solver):
 
     def short_dist_solver(self, frp_inst):
         node_pick = sku_to_node_pick(frp_inst.sku_pick, frp_inst.whouse.slots, frp_inst.start_node_id)
-        dist_matrix = create_dist_matrix(frp_inst.node_pick, frp_inst.start_node_id, frp_inst.whouse.whouse_graph)
+        dist_matrix = frp_inst._dist_matrix
 
         curr_node_id = node_pick[0].pop(0) # Parce que je suppose qu'on commence au premier objet dans la liste node_pick
         visit = [curr_node_id]

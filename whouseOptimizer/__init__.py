@@ -95,7 +95,7 @@ class Optimizer():
         frp_sol = frp_solver.solve(frp_inst)
 
         status = 1
-        if frp_sol.validate(rsol_inst) == False:
+        if frp_sol.validate() == False:
             status = 3
 
         return { 'Route':str(frp_sol), 'Valeur': str(frp_sol.evaluate())}, status          
@@ -103,8 +103,8 @@ class Optimizer():
     
     def shortDist(self):
 
-        frp_inst = create_dist_matrix(node_pick, start_node_id, whouse_graph)
-        #frp_inst = frp.FastRouteProb(dist_matrix=self.data, B=self.B, d=self.d, K=self.K, N=self.N)
+        #frp_inst = create_dist_matrix(node_pick, start_node_id, whouse_graph)
+        frp_inst = frp.FastRouteProb(dist_matrix=self.data, B=self.B, d=self.d, K=self.K, N=self.N)
         rsol_inst = rsol.Route(solvedProblem=frp_inst, visit_sequence=[])
 
         # Run
