@@ -60,9 +60,10 @@ def main(argv=None):
             params['K'] = None
             params['B'] = None
             params['d'] = None
-            params['n'] = None
+            params['N'] = None
+            params['whouse'] = None
             opts, args = getopt.getopt(argv[1:],
-                                    'hc:i:o:t:v:s:K:B:d:n:',
+                                    'hc:i:o:t:v:s:K:B:d:N:whouse:',
                                     ['help',
                                         'config=',
                                         'in-file=',
@@ -73,7 +74,8 @@ def main(argv=None):
                                         'K=',
                                         'B=',
                                         'd=',
-                                        'n='])
+                                        'N=',
+                                        'whouse'])
 
             print(opts)
         
@@ -151,15 +153,21 @@ def main(argv=None):
                     elif d > 1000:
                         d = 1000
                     params['d'] = d
-                elif o in ('n'):
+                elif o in ('N'):
                     if not a.isnumeric():
-                        raise Usage('n doit être numérique.')
-                    n = int(a)
-                    if n < 0:
-                        n = 0
-                    elif n > 10:
-                        n = 10
-                    params['n'] = n                             
+                        raise Usage('N doit être numérique.')
+                    N = int(a)
+                    if N < 0:
+                        N = 0
+                    elif N > 10:
+                        N = 10
+                    params['N'] = N 
+                elif o in ('whouse'):
+                    filename = os.path.normpath(a)
+                    if not os.path.isfile(filename):
+                        raise Usage('Doit avoir whouse.py comme fichier d\'entré.')
+                    params['whouse'] = a  
+                                     
                 else:
                     print(__doc__)
                     raise Usage('Paramètre invalide')

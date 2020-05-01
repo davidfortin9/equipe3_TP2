@@ -22,7 +22,7 @@ class Optimizer():
         self.K = None
         self.d = None
         self.B = None
-        self.n = None
+        self.N = None
         self.dist_matrix = None
         self.whouse = None
 
@@ -36,12 +36,12 @@ class Optimizer():
         self.mip_model = params['mip_model']
         self.data = params['data']
 #        self.prob = params['prob']
-        self.K = params['K']
-        self.d = params['d']
-        self.B = params['B']
-        self.n = params['n']
-#        self.dist_matrix = params['c']
-#        self.whouse = params[]
+        self.K = int(params['K'])
+        self.d = dict(params['d'])
+        self.B = int(params['B'])
+        self.N = int(params['N'])
+#        self.dist_matrix = [params['c']]
+        self.whouse = params['whouse']
 
 
         if int(self.solver) == 1 :
@@ -58,15 +58,14 @@ class Optimizer():
     
     def solveMip(self):
         
-        frp_inst = frp.FastRouteProb(self.data)
+        frp_inst = frp.FastRouteProb(self.data, self.K, self.N, self.d, self.B, self.whouse)
         rsol_inst = rsol.Route(solvedProblem=frp_inst, visit_sequence=[])
         
         # Run
         print('Problème actuel:')
         print(str(frp_inst))
         print('Résoudre le problème avec FrpAmplMipSolver')
-        frp_solver = FrpAmpl.FrpAmplMipSolver(self.prob)
-        #frp_solver = FrpAmpl.FrpAmplMipSolver(self.prob)    
+        frp_solver = FrpAmpl.FrpAmplMipSolver(self.prob)    
         frp_solver.max_time_sec = self.time
         frp_sol = frp_solver.solve()
 
