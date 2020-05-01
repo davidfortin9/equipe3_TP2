@@ -3,6 +3,7 @@ import whouseOptimizer.fastroute_problem as frp
 import whouseOptimizer.route_solution as rsol
 import whouseOptimizer.frp_rand_solver as frprs
 import whouseOptimizer.short_dist_solver as sds
+#import whouse_modules.whouse as wh
 
 import os
 from whousePortail.utils import Utils
@@ -67,7 +68,7 @@ class Optimizer():
         print('Résoudre le problème avec FrpAmplMipSolver')
         frp_solver = FrpAmpl.FrpAmplMipSolver(self.prob)    
         frp_solver.max_time_sec = self.time
-        frp_sol = frp_solver.solve()
+        frp_sol = frp_solver.solve()   #.solve (frp_int)
 
         status = 1
 

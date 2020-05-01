@@ -43,7 +43,7 @@ class WhouseSync():
 #        self.params['B'] = None
 #        self.params['K'] = None
 #        self.params['N'] = None
-#        self.params['whouse'] = None
+        self.params['whouse'] = None
 
     def solveProblem(self):
 
@@ -87,7 +87,7 @@ class WhouseSync():
             dict_matrix = Utils.loadText(filename) #Ajout pour voir si whouse load    
 
         # :TODO: Verifier si float crée une erreur: autrefois int
-        self.data = [[ float(value) for value in liste] for liste in dict_matrix.values()]
+        #self.data = [[ float(value) for value in liste] for liste in dict_matrix.values()]
 
     def set_data(self,data=None):
         self.data = data
