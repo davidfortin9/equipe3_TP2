@@ -3,8 +3,8 @@ import whouseOptimizer.fastroute_problem as frp
 import whouseOptimizer.route_solution as rsol
 import whouseOptimizer.frp_rand_solver as frprs
 import whouseOptimizer.short_dist_solver as sds
-from whouse_modules.pickseq import sku_to_node_pick as sku_to_node_pick
-from whouse_modules.pickseq import create_dist_matrix as create_dist_matrix
+#from whouse_modules.pickseq import sku_to_node_pick as sku_to_node_pick
+#from whouse_modules.pickseq import create_dist_matrix as create_dist_matrix
 #import whouse_modules.whouse as wh
 
 import os
@@ -70,7 +70,7 @@ class Optimizer():
         print('Résoudre le problème avec FrpAmplMipSolver')
         frp_solver = FrpAmpl.FrpAmplMipSolver(self.prob)    
         frp_solver.max_time_sec = self.time
-        frp_sol = frp_solver.solve()   #.solve (frp_int)
+        frp_sol = frp_solver.solve() 
 
 
         status = 1
@@ -111,9 +111,9 @@ class Optimizer():
         print('Problème actuel:')
         print(str(frp_inst))
         print('Résoudre le problème avec le solveur short distance')
-        frp_solver = sds.ShortDistance()
+        frp_solver = sds.ShortDistance(self.prob)
         frp_solver.max_time_sec = self.time
-        frp_sol = frp_solver.short_dist_solver(frp_inst)
+        frp_sol = frp_solver.solve()
 
 #        rsol_inst = rsol.Route(solvedProblem=frp_inst, visit_sequence=visit_sequence)
 
