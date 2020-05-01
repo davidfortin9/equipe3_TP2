@@ -8,7 +8,7 @@ K: 1
 B: 150
 d: {2:50,3:50,4:50,5:50,6:50,7:50,8:50}
 N: 8 
-whouse: 'data/whouse_modules/whouse.py'      
+whouse: 'whouse_modules/whouse.py'      
 in-file:  "data/petit_entrepot/solveur_size8_inst1.yaml"
 out-file: 'data/resultats/petit_entrepot/solveur_size8_inst1_sol.out'
 result-folder:  'data/resultats/'
