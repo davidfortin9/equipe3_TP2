@@ -81,16 +81,18 @@ class Optimizer():
     def solveRand(self):
 
         frp_inst = frp.FastRouteProb(self.data)
+        rsol_inst = rsol.Route(solvedProblem=frp_inst, visit_sequence=[])
+
         # Run
         print('Problème actuel:')
         print(str(frp_inst))
         print('Résoudre le problème avec le solveur Random')
-        frp_solver = frprs.FrpRandSolver()
+        frp_solver = frprs.FrpRandSolver(self.verbose)
         frp_solver.max_time_sec = self.time
         frp_sol = frp_solver.solve(frp_inst)
 
         status = 1
-        if frp_sol.validate() == False:
+        if frp_sol.validate(rsol_inst) == False:
             status = 3
 
         return { 'Route':str(frp_sol), 'Valeur': str(frp_sol.evaluate())}, status          

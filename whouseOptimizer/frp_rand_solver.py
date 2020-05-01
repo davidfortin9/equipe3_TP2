@@ -9,8 +9,8 @@ import copy
 
 class FrpRandSolver(sl.Solver):
 
-    def __init__(self):
-        super(FrpRandSolver, self).__init__()
+    def __init__(self, verbose=1):
+        super(FrpRandSolver, self).__init__(verbose)
 
     def solve(self, prob=None):
         # Préparer exécution
