@@ -37,8 +37,8 @@ import os
 
 
 class Usage(Exception):
-   def __init__(self, msg):
-      self.msg = msg
+    def __init__(self, msg):
+        self.msg = msg
 
 def main(argv=None):
     if argv is None:
@@ -85,7 +85,7 @@ def main(argv=None):
                     filename = os.path.normpath(a)
                     if not os.path.isfile(filename):
                         raise Usage('Le fichier de configuration est ' +
-                                    'inexistant.')
+                                'inexistant.')
                     params['config'] = a
                 elif o in ('-i', '--in-file'):
                     filename = os.path.normpath(a)
