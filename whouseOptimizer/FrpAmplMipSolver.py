@@ -81,7 +81,7 @@ class FrpAmplMipSolver(sl.Solver):
             ampl.setData(df)
             
             ampl.solve()
-
+            
             # Extraction de la visit sequence
             x = ampl.getVariable('x').getValues()
 
@@ -102,3 +102,4 @@ class FrpAmplMipSolver(sl.Solver):
             Z = ampl.getValue('Z')
             
             return visit_sequence, Z
+           
