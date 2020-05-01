@@ -82,6 +82,12 @@ print('d = ' + str(frp_inst1.d))
 print('K = ' + str(frp_inst1.K))
 print('N = ' + str(frp_inst1.N))
 
+print("*** Test FrpAmplMipSolver *** ")
+FrpAmplInst = FrpAmpl.FrpAmplMipSolver(prob=frp_inst1)
+sol = FrpAmpl.FrpAmplMipSolver.solve(FrpAmplInst)
+print("La visit_sequence est: " + str(sol[0]))
+print("La valeur de la fonction objective est: " + str(sol[1]))
+
 print("Cette section fait des tests en partant de la base de donnée whouse2DB.db")
 
 print('*** Tests whousedesign ***')
@@ -152,9 +158,12 @@ print('d = ' + str(frp_inst1.d))
 print('K = ' + str(frp_inst1.K))
 print('N = ' + str(frp_inst1.N))
 
-# print("*** Test FrpAmplMipSolver *** ")
-# FrpAmplInst = FrpAmpl.FrpAmplMipSolver(prob=frp_inst1)
-# print(FrpAmpl.FrpAmplMipSolver.solve(FrpAmplInst))
+print("*** Test FrpAmplMipSolver *** ")
+FrpAmplInst = FrpAmpl.FrpAmplMipSolver(prob=frp_inst1)
+sol = FrpAmpl.FrpAmplMipSolver.solve(FrpAmplInst)
+print("La visit_sequence est: " + str(sol[0]))
+print("La valeur de la fonction objective est: " + str(sol[1]))
+
 
 
 # print('*** Test fastroute_problem ***')

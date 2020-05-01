@@ -98,5 +98,7 @@ class FrpAmplMipSolver(sl.Solver):
                 for r in visit_sequence:
                     if row[0] == r[-1] and row[2] == 1:
                         r.append(row[1])
-
-            return visit_sequence
+            
+            Z = ampl.getValue('Z')
+            
+            return visit_sequence, Z
