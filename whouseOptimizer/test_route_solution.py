@@ -33,8 +33,9 @@ class TestRoute(unittest.TestCase):
 
 
     def test_validate(self):
-        frp_inst = frp.FastRouteProb(dist_matrix=dist_matrix_small)
-        curr_rsol = rsol.Route(solvedProblem=frp_inst)
+         frp_inst = frp.FastRouteProb(d=d, B=B, N=N, dist_matrix=c, K=K, whouse=None)
+        curr_rsol = rsol.Route(solvedProblem=frp_inst, visit_sequence=[[1.0, 2.0, 1.0], [1.0, 3.0, 4.0, 1.0], [1.0, 5.0, 1.0]])
+
 
         # La séquence initiale devrait être invalide:
         self.assertFalse(curr_rsol.validate())
@@ -42,17 +43,16 @@ class TestRoute(unittest.TestCase):
         # Ces séquences devraient être invalides:
         curr_rsol.visit_sequence = []
         self.assertFalse(curr_rsol.validate())
-        curr_rsol.visit_sequence = [0, 2, 3]
+        curr_rsol.visit_sequence = [[1.0, 2.0, 1.0], [2.0, 3.0, 4.0, 1.0], [6.0, 5.0, 1.0]]
         self.assertFalse(curr_rsol.validate())
-        curr_rsol.visit_sequence = [1, 1, 1, 1]
+        curr_rsol.visit_sequence = [[1.0, 1.0, 1.0], [1.0, 1.0, 4.0, 1.0], [1.0, 1.0, 1.0]]
         self.assertFalse(curr_rsol.validate())
-        curr_rsol.visit_sequence = [1, 1, 1, 1, 1]
-        self.assertFalse(curr_rsol.validate())
+        
 
         # Ces séquences devraient être valides:
-        curr_rsol.visit_sequence = [0, 1, 2, 3]
+        curr_rsol.visit_sequence = [[1.0, 2.0, 1.0], [1.0, 3.0, 4.0, 1.0], [1.0, 5.0, 1.0]]
         self.assertTrue(curr_rsol.validate())
-        curr_rsol.visit_sequence = [0, 2, 1, 3]
+        curr_rsol.visit_sequence = [[1.0, 3.0, 4.0, 1.0], [1.0, 2.0, 1.0], [1.0, 5.0, 1.0]]
         self.assertTrue(curr_rsol.validate())
 
 
