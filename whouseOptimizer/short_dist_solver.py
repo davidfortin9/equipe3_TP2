@@ -4,31 +4,33 @@ import whouse_modules.whouse as whouse
 import whouseOptimizer.solver as sl
 from whouseOptimizer.fastroute_problem import FastRouteProb
 
-class ShortDistance():
+
+class ShortDistance(sl.Solver):
 
     def __init__(self,prob):
-        super(ShortDistance).__init__()
+        super(ShortDistance, self).__init__()
         self.prob = prob
 
     def solve(self):
-        dist_matrix = self.prob._dist_matrix
-        node_pick = list(range(1,len(dist_matrix)))
-        print(node_pick)
-        curr_node_id = node_pick.pop(0) # Parce que je suppose qu'on commence au premier objet dans la liste node_pick
-        visit = [curr_node_id]
-        while len(node_pick) - 1:
+        if type(self.prob) == FastRouteProb:
+            dist_matrix = self.prob._dist_matrix
+            node_pick = list(range(1,len(dist_matrix)))
+            print(node_pick)
+            curr_node_id = node_pick.pop(0) # Parce que je suppose qu'on commence au premier objet dans la liste node_pick
+            visit = [curr_node_id]
+            while len(node_pick) - 1:
 
-            min_dist = -1
-            min_dist_node = -1
-            for node in node_pick:
-                if min_dist >= dist_matrix[curr_node_id][node] or min_dist_node == -1:
-                    min_dist  = dist_matrix[curr_node_id][node]
-                    min_dist_node = node
-            curr_node_id = min_dist_node
-            node_pick.remove(min_dist_node)
-            visit.append(curr_node_id)
-        visit.append(node_pick[-1])
-        return visit
+                min_dist = -1
+                min_dist_node = -1
+                for node in node_pick:
+                    if min_dist >= dist_matrix[curr_node_id][node] or min_dist_node == -1:
+                        min_dist  = dist_matrix[curr_node_id][node]
+                        min_dist_node = node
+                curr_node_id = min_dist_node
+                node_pick.remove(min_dist_node)
+                visit.append(curr_node_id)
+            visit.append(node_pick[-1])
+            return visit
 
         # Calcule la distance entre le start_node et tous les autres noeuds
         # Ajoute le noeud à la pickseq
