@@ -10,10 +10,10 @@ python __file__
 
 Paramètres obligatoires:
   -c, --config=<F>          Fichier de configuration des solveurs
-  -k                        Le nombre de pickers
-  -b                        Capacité de transport par picker
+  -K                        Le nombre de pickers
+  -B                        Capacité de transport par picker
   -d                        Quantité de stocks au noeud i
-  -N                        Quantité de noeuds
+  -n                        Quantité de noeuds
 
 Paramètres optionnels:
   -h, --help                Affiche cette documentation.
@@ -57,12 +57,12 @@ def main(argv=None):
             params['verbose'] = None
             params['config'] = None
             params['solver'] = None
-            params['k'] = None
-            params['b'] = None
+            params['K'] = None
+            params['B'] = None
             params['d'] = None
             params['n'] = None
             opts, args = getopt.getopt(argv[1:],
-                                    'hc:i:o:t:v:s:k:b:d:N:',
+                                    'hc:i:o:t:v:s:K:B:d:n:',
                                     ['help',
                                         'config=',
                                         'in-file=',
@@ -70,10 +70,10 @@ def main(argv=None):
                                         'time=',
                                         'verbose=',
                                         'solver=',
-                                        'k=',
-                                        'b=',
+                                        'K=',
+                                        'B=',
                                         'd=',
-                                        'N='])
+                                        'n='])
 
             print(opts)
         
@@ -124,24 +124,24 @@ def main(argv=None):
                     elif solver > 3:
                         solver = 3
                     params['solver'] = solver
-                elif o in ('-k'):
+                elif o in ('-K'):
                     if not a.isnumeric():
-                        raise Usage('k doit être numérique.')
-                    k = int(a)
-                    if k < 0:
-                        k = 0
-                    elif k > 10:
-                        k = 10
-                    params['k'] = k
-                elif o in ('b'):
+                        raise Usage('K doit être numérique.')
+                    K = int(a)
+                    if K < 0:
+                        K = 0
+                    elif K > 10:
+                        K = 10
+                    params['K'] = K
+                elif o in ('B'):
                     if not a.isnumeric():
-                        raise Usage('b doit être numérique.')
-                    b = int(a)
-                    if b < 0:
-                        b = 0
-                    elif b > 1000:
-                        b = 1000
-                    params['b'] = b
+                        raise Usage('B doit être numérique.')
+                    B = int(a)
+                    if B < 0:
+                        B = 0
+                    elif B > 1000:
+                        B = 1000
+                    params['B'] = B
                 elif o in ('d'):
                     if not a.isnumeric():
                         raise Usage('d doit être numérique.')
@@ -151,15 +151,15 @@ def main(argv=None):
                     elif d > 1000:
                         d = 1000
                     params['d'] = d
-                elif o in ('N'):
+                elif o in ('n'):
                     if not a.isnumeric():
-                        raise Usage('N doit être numérique.')
-                    N = int(a)
-                    if N < 0:
-                        N = 0
-                    elif N > 10:
-                        N = 10
-                    params['N'] = N                             
+                        raise Usage('n doit être numérique.')
+                    n = int(a)
+                    if n < 0:
+                        n = 0
+                    elif n > 10:
+                        n = 10
+                    params['n'] = n                             
                 else:
                     print(__doc__)
                     raise Usage('Paramètre invalide')

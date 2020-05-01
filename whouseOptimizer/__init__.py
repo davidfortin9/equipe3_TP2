@@ -39,11 +39,10 @@ class Optimizer():
         self.K = params['K']
         self.d = params['d']
         self.B = params['B']
-        self.n = params['n']
+        self.n = params['N']
         self.dist_matrix = params['c']
 #        self.whouse = params[]
 
-#        frp_inst = frp.FastRouteProb(d = self.d, B = self.b, N = self.N, dist_matrix = self.dist_matrix, K=self.k)
 
         if int(self.solver) == 1 :
             sol, sol_status = self.solveMip()

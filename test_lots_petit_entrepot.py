@@ -15,9 +15,10 @@ for solveur_no in solveur_nos:
             command_line = ['python',
                             '__main.py__',
                             '-c',
-                            'data/petit_entrepot/config_solveur' + str(solveur_no) + '_size' + 
+                            'data/petit_entrepot/config_solveur_size' + 
                                 str(size_nos) + '_' + 'inst' + str(instance_no) + '.yaml',
-                            '-k' + str(pick_no)
+                            '-s' + str(solveur_no),    
+                            '-K' + str(pick_no)
                             ]
             print(command_line)
             subprocess.run(command_line)
