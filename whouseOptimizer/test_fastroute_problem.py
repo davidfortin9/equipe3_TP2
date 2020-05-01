@@ -1,7 +1,12 @@
 
 import unittest
+import whouseOptimizer.fastroute_problem as frp
 
-dist_matrix_small = 
+dist_matrix_small = [[0, 7, 11, 15, 19], 
+                    [7, 0, 18, 22, 26],
+                    [11, 18, 0, 18, 22],
+                    [15, 22, 18, 0, 18],
+                    [19, 26, 22, 18, 0]]
 
 class TestFastRouteProb(unittest.TestCase):
     def test_init(self):

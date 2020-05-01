@@ -80,6 +80,7 @@ print('d = ' + str(frp_inst1.d))
 print('K = ' + str(frp_inst1.K))
 print('N = ' + str(frp_inst1.N))
 
+
 # print("*** Test FrpAmplMipSolver *** ")
 # FrpAmplInst = FrpAmpl.FrpAmplMipSolver(prob=frp_inst1)
 # print(FrpAmpl.FrpAmplMipSolver.solve(FrpAmplInst))
