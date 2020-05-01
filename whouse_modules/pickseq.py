@@ -5,6 +5,7 @@ import whouse_modules.whousedesign as wsd
 import whouse_modules.whouse
 import whouse_modules.graph
 
+
 def sku_to_node_pick(sku_pick, slots, start_node_id):
 	print("Creating a Node list from the SKU list...")
 	node_pick_temp = []

@@ -4,9 +4,9 @@ from tkinter import Canvas, Tk
 import whouse_modules.whouse as whouse
 import sqlite3
 
-def get_arcs():
+def get_arcs(DB):
         #Connect to DB
-        conn = sqlite3.connect('whouseDB.db')
+        conn = sqlite3.connect(DB)
         c = conn.cursor()
 
         #Get arcs from DB
@@ -22,9 +22,9 @@ def get_arcs():
         
         return arcs_dict
 
-def get_nodes():
+def get_nodes(DB):
         #Connect to DB
-        conn = sqlite3.connect('whouseDB.db')
+        conn = sqlite3.connect(DB)
         c = conn.cursor()
 
         #Get nodes from DB
@@ -40,9 +40,9 @@ def get_nodes():
 
         return nodes_dict
 
-def get_slots():
+def get_slots(DB):
         #Connect to DB
-        conn = sqlite3.connect('whouseDB.db')
+        conn = sqlite3.connect(DB)
         c = conn.cursor()
 
         #Get slots from DB

@@ -17,7 +17,7 @@ class FrpAmplMipSolver(sl.Solver):
     def solve(self): 
         if type(self.prob) == frp.FastRouteProb:
             # Création du modèle
-            ampl_path = os.path.normpath('C:\\Users\\Utilisateur\\Documents\\BAA\\Hiver 2020\\MQT-2100\\ampl_mswin64 (2)')
+            ampl_path = os.path.normpath('C:/Users/David/Documents/AMPL/ampl_mswin64')
             #'C:\Users\maria\Downloads\ampl_mswin64'
             #'C:\\Users\\Utilisateur\\Documents\\BAA\\Hiver 2020\\MQT-2100\\ampl_mswin64 (2)'
             #'C:/Users/David/Documents/AMPL/ampl_mswin64'
@@ -25,7 +25,7 @@ class FrpAmplMipSolver(sl.Solver):
             ampl = amplpy.AMPL(ampl_env)
             ampl.setOption('solver', 'gurobi')
             ampl.setOption('gurobi_options', 'timelim 2000 outlev 1')
-            dir_ampl = os.path.normpath('C:\\Users\\Utilisateur\\Documents\\BAA\\Hiver 2020\\MQT-2100\\Travaux\\TP2\\Git\\Ampl')
+            dir_ampl = os.path.normpath('C:/Users/David/Desktop/equipe3_TP2/equipe3_TP2/Ampl')
             #'C:\Users\maria\Desktop\SIAD\equipe3_TP2\equipe3_TP2'
             #'C:\\Users\\Utilisateur\\Documents\\BAA\\Hiver 2020\\MQT-2100\\Travaux\\TP2\\Git\\Ampl'
             #'C:/Users/David/Desktop/equipe3_TP2/equipe3_TP2'
@@ -98,5 +98,7 @@ class FrpAmplMipSolver(sl.Solver):
                 for r in visit_sequence:
                     if row[0] == r[-1] and row[2] == 1:
                         r.append(row[1])
-
-            return visit_sequence
+            
+            Z = ampl.getValue('Z')
+            
+            return visit_sequence, Z

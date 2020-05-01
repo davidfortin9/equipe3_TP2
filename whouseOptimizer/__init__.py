@@ -3,6 +3,8 @@ import whouseOptimizer.fastroute_problem as frp
 import whouseOptimizer.route_solution as rsol
 import whouseOptimizer.frp_rand_solver as frprs
 import whouseOptimizer.short_dist_solver as sds
+from whouse_modules.pickseq import sku_to_node_pick as sku_to_node_pick
+from whouse_modules.pickseq import create_dist_matrix as create_dist_matrix
 #import whouse_modules.whouse as wh
 
 import os
@@ -82,7 +84,6 @@ class Optimizer():
     def solveRand(self):
 
         frp_inst = frp.FastRouteProb(dist_matrix=self.data, B=self.B, d=self.d, K=self.K, N=self.N)
-        #frp_inst = frp.FastRouteProb(self.data)
         rsol_inst = rsol.Route(solvedProblem=frp_inst, visit_sequence=[])
 
         # Run
@@ -102,21 +103,23 @@ class Optimizer():
     
     def shortDist(self):
 
-        frp_inst = frp.FastRouteProb(dist_matrix=self.data, B=self.B, d=self.d, K=self.K, N=self.N)
-        #frp_inst = frp.FastRouteProb(self.data)
+        frp_inst = create_dist_matrix(node_pick, start_node_id, whouse_graph)
+        #frp_inst = frp.FastRouteProb(dist_matrix=self.data, B=self.B, d=self.d, K=self.K, N=self.N)
+        rsol_inst = rsol.Route(solvedProblem=frp_inst, visit_sequence=[])
+
         # Run
         print('Problème actuel:')
         print(str(frp_inst))
         print('Résoudre le problème avec le solveur short distance')
         frp_solver = sds.ShortDistance()
         frp_solver.max_time_sec = self.time
-        visit_sequence = frp_solver.short_dist_solver(frp_inst)
+        frp_sol = frp_solver.short_dist_solver(frp_inst)
 
-        rsol_inst = rsol.Route(solvedProblem=frp_inst, visit_sequence=visit_sequence)
+#        rsol_inst = rsol.Route(solvedProblem=frp_inst, visit_sequence=visit_sequence)
 
         status = 1
         if rsol.Route.validate(rsol_inst) == False:
             status = 3
 
 
-        return { 'Route':str(visit_sequence), 'Valeur': str(rsol.Route.evaluate(rsol_inst))}, status
+        return { 'Route':str(frp_sol), 'Valeur': str(rsol.Route.evaluate(rsol_inst))}, status
