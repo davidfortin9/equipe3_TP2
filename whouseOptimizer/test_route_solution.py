@@ -1,20 +1,26 @@
 import unittest
 import sys
 
-import qcPlanner.qcOptimizer.fastroute_problem as frp
-import qcPlanner.qcOptimizer.route_solution as rsol
+import whouseOptimizer.fastroute_problem as frp
+import whouseOptimizer.route_solution as rsol
 
-dist_matrix_small = [[0,  20,  30, 40],
-                     [20,  0,  30,  5],
-                     [30, 30,   0, 10],
-                     [40,  5,  10,  0]]
+c = [[0, 7, 11, 15, 19],
+    [7, 0, 18, 22, 26],
+    [11, 18, 0, 18, 22],
+    [15, 22, 18, 0, 18],
+    [19, 26, 22, 18, 0]]
 
+B = 150
+d = {2: 50, 3: 50, 4: 50, 5: 150}
+K = 4
+N = 5
 
+visit_sequence = [[1.0, 2.0, 1.0], [1.0, 3.0, 4.0, 1.0], [1.0, 5.0, 1.0]]
 
 class TestRoute(unittest.TestCase):
     def test_init(self):
-        frp_inst = frp.FastRouteProb(dist_matrix=dist_matrix_small)
-        curr_rsol = rsol.Route(solvedProblem=frp_inst)
+        frp_inst = frp.FastRouteProb(d=d, B=B, N=N, dist_matrix=c, K=K, whouse=None)
+        curr_rsol = rsol.Route(solvedProblem=frp_inst, visit_sequence=[[1.0, 2.0, 1.0], [1.0, 3.0, 4.0, 1.0], [1.0, 5.0, 1.0]])
 
         # Initialement, la séquence doit être vide et la solution ne devrait 
         # pas être prouvée optimale au départ:
@@ -23,7 +29,7 @@ class TestRoute(unittest.TestCase):
 
         # Dans un objet Route, on conserve une référence au problème.
         # Vérifions que c'est bien ce qui est fait.
-        self.assertTrue(frp_inst is curr_rsol.problem)
+        self.assertTrue(frp_inst is curr_rsol.prob)
 
 
     def test_validate(self):
