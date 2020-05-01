@@ -12,6 +12,6 @@ d: {2:50,3:50,4:50,5:50,6:50,7:50,8:50,9:50,10:50,
     31:50,32:50,33:50,34:50,35:50,36:50,37:50,38:50,39:50,40:50,
     41:50,42:50,43:50,44:50,45:50,46:50,47:50,48:50,49:50,50:50} 
 n: 50      
-in-file:  "data/gros_entrepot/mip_size50_inst4.yaml"
-out-file: 'data/resultats/gros_entrepot/mip_size50_inst4_sol.out'
+in-file:  "data/gros_entrepot/solveur_size50_inst4.yaml"
+out-file: 'data/resultats/gros_entrepot/solveur_size50_inst4_sol.out'
 result-folder:  'data/resultats/'

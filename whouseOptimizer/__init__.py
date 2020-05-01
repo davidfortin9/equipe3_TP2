@@ -39,8 +39,8 @@ class Optimizer():
         self.K = params['K']
         self.d = params['d']
         self.B = params['B']
-        self.n = params['N']
-        self.dist_matrix = params['c']
+        self.n = params['n']
+#        self.dist_matrix = params['c']
 #        self.whouse = params[]
 
 
@@ -58,14 +58,15 @@ class Optimizer():
     
     def solveMip(self):
         
-        frp_inst = frp.FastRouteProb(K=self.K, d=self.d, B=self.B, N=self.n, dist_matrix=self.dist_matrix, whouse=None)
+        frp_inst = frp.FastRouteProb(self.data)
         rsol_inst = rsol.Route(solvedProblem=frp_inst, visit_sequence=[])
         
         # Run
         print('Problème actuel:')
         print(str(frp_inst))
         print('Résoudre le problème avec FrpAmplMipSolver')
-        frp_solver = FrpAmpl.FrpAmplMipSolver(self.prob)    
+        frp_solver = FrpAmpl.FrpAmplMipSolver(self.prob)
+        #frp_solver = FrpAmpl.FrpAmplMipSolver(self.prob)    
         frp_solver.max_time_sec = self.time
         frp_sol = frp_solver.solve()
 
