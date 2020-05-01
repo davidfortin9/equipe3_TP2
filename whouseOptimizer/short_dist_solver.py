@@ -2,6 +2,7 @@ from whouse_modules.pickseq import sku_to_node_pick as sku_to_node_pick
 from whouse_modules.pickseq import create_dist_matrix as create_dist_matrix
 import whouse_modules.whouse as whouse
 import whouseOptimizer.solver as sl
+from whouseOptimizer.fastroute_problem import FastRouteProb
 
 class ShortDistance(sl.Solver):
 

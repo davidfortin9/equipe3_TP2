@@ -1,5 +1,6 @@
 import whouseOptimizer.problem as prob
 import whouse_modules.whouse as whouse
+import whouse_modules.pickseq as pseq
 
 import copy
 
