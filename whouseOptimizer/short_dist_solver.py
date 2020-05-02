@@ -34,20 +34,7 @@ class ShortDistance(sl.Solver):
             visit.append(1)
             return visit
 
-        # Calcule la distance entre le start_node et tous les autres noeuds
-        # Ajoute le noeud à la pickseq
-        # Ajoute la distance à la obj value
 
-        # Calculer la distance entre le noeud précédent et tous les autres noeuds
-        # Ajoute le noeud à la pickseq
-        # Ajoute la distance à la obj value
-        # Répéter pour tous les noeuds
-
-
-
-    
-
-        # 
 
 
 
