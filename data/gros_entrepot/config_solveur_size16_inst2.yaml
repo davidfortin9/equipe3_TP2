@@ -1,0 +1,14 @@
+ampl_path: ""
+mip_model_path: ""
+mip_model: "VRP.mod"
+time: 60
+verbose: 1
+solver: 1
+K: 4
+B: 200
+d: {2: 50,3: 50,4: 50,5: 50,6: 50,7: 50,8: 50,9: 50,10: 50,
+    11: 50,12: 50,13: 50,14: 50,15: 50,16: 50} 
+N: 16      
+in-file:  "data/gros_entrepot/solveur_size16_inst2.yaml"
+out-file: 'data/resultats/gros_entrepot/solveur_size16_inst2_sol.out'
+result-folder:  'data/resultats/'

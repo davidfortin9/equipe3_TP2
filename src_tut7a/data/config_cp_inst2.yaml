@@ -1,9 +1,0 @@
-ampl_path: ""
-cp_model_path: "qcPlanner/qcOptimizer/ampl_models"
-cp_model: "quantum_courrier_cp.mod"
-time: 60
-verbose: 1
-solver: 2
-in-file:  "data/inst2.yaml"
-out-file: 'data/inst2_sol.out'
-result-folder:  'data/results/'

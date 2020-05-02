@@ -4,7 +4,7 @@ import numpy as np
 
 def gen_random_instance(n=3,
                         min_value=0.,
-                        max_value=10.):
+                        max_value=20.):
     my_matrix = np.random.randint(low=min_value,
                                   high=max_value,
                                   size=(n, n))
@@ -24,11 +24,11 @@ def dump_instance_yaml(matrix = None,
         
 
 np.random.seed(253785)
-for inst_size in range(3, 4):
-    for rand_inst_no in range (1, 2):
+for inst_size in range(16, 17):
+    for rand_inst_no in range (1, 6):
         instance = gen_random_instance(n=inst_size,
                                         min_value=0.,
-                                        max_value=10.)
+                                        max_value=20.)
         instance_filename = 'mip' + '_size' + str(inst_size) \
             + '_inst' + str(rand_inst_no) + '.yaml'
         dump_instance_yaml(matrix=instance,

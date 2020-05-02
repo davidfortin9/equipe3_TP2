@@ -4,11 +4,18 @@ mip_model: "VRP.mod"
 time: 60
 verbose: 1
 solver: 1
-K: 1
-B: 150
-d: {2:50,3:50,4:50,5:50,6:50,7:50,8:50}
+K: 2
+B: 200
+d:
+  {2: 50, 
+  3:  50,
+  4:  50,
+  5:  50,
+  6:  50,
+  7:  50,
+  8:  50}
 N: 8 
-whouse: 'whouse_modules/whouse.py'      
+#whouse: 'whouse_modules/whouse.py'      
 in-file:  "data/petit_entrepot/solveur_size8_inst1.yaml"
 out-file: 'data/resultats/petit_entrepot/solveur_size8_inst1_sol.out'
 result-folder:  'data/resultats/'

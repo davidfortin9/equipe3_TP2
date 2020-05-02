@@ -3,9 +3,6 @@ import whouseOptimizer.fastroute_problem as frp
 import whouseOptimizer.route_solution as rsol
 import whouseOptimizer.frp_rand_solver as frprs
 import whouseOptimizer.short_dist_solver as sds
-#from whouse_modules.pickseq import sku_to_node_pick as sku_to_node_pick
-#from whouse_modules.pickseq import create_dist_matrix as create_dist_matrix
-#import whouse_modules.whouse as wh
 
 import os
 from whousePortail.utils import Utils
@@ -26,8 +23,6 @@ class Optimizer():
         self.d = None
         self.B = None
         self.N = None
-#        self.dist_matrix = None
-        self.whouse = None
 
     def optimize(self, params):
         
@@ -40,11 +35,12 @@ class Optimizer():
         self.data = params['data']
 #        self.prob = params['prob']
         self.K = int(params['K'])
-        self.d = dict(params['d'])
+        d_dict = params['d']
+        #self.d = (params['d'])
+        d_dict = {int(k):int(v) for k,v in d_dict.items()}
+        self.d = d_dict
         self.B = int(params['B'])
         self.N = int(params['N'])
-#        self.dist_matrix = params['c']
-        self.whouse = params['whouse']
 
 
         if int(self.solver) == 1 :
@@ -54,7 +50,7 @@ class Optimizer():
             sol, sol_status = self.solveRand()
 
         elif int(self.solver) == 3:
-            sol, sol_status = self.shortDist()  #(frp_inst)   
+            sol, sol_status = self.shortDist()   
 
         return sol, sol_status               
 
@@ -63,22 +59,23 @@ class Optimizer():
         
         frp_inst = frp.FastRouteProb(dist_matrix=self.data, B=self.B, d=self.d, K=self.K, N=self.N)
         rsol_inst = rsol.Route(solvedProblem=frp_inst, visit_sequence=[])
-        
         # Run
         print('Problème actuel:')
         print(str(frp_inst))
         print('Résoudre le problème avec FrpAmplMipSolver')
-        frp_solver = FrpAmpl.FrpAmplMipSolver(self.prob)    
+        frp_solver = FrpAmpl.FrpAmplMipSolver(prob=frp_inst)    
         frp_solver.max_time_sec = self.time
-        frp_sol = frp_solver.solve() 
-
+        sol = FrpAmpl.FrpAmplMipSolver.solve(frp_solver)
+        frp_sol_val = sol[1]
+        frp_sol_route = sol[0]
+        print(sol)
 
         status = 1
 
         if rsol.Route.validate(rsol_inst) == False:
             status = 3
 
-        return { 'Route':str(frp_sol), 'Valeur': str(rsol.Route.evaluate(rsol_inst))}, status
+        return { 'Route':str(frp_sol_route), 'Valeur': str(frp_sol_val)}, status
 
 
     def solveRand(self):
@@ -103,7 +100,6 @@ class Optimizer():
     
     def shortDist(self):
 
-        #frp_inst = create_dist_matrix(node_pick, start_node_id, whouse_graph)
         frp_inst = frp.FastRouteProb(dist_matrix=self.data, B=self.B, d=self.d, K=self.K, N=self.N)
         rsol_inst = rsol.Route(solvedProblem=frp_inst, visit_sequence=[])
 
@@ -114,8 +110,6 @@ class Optimizer():
         frp_solver = sds.ShortDistance(self.prob)
         frp_solver.max_time_sec = self.time
         frp_sol = frp_solver.solve()
-
-#        rsol_inst = rsol.Route(solvedProblem=frp_inst, visit_sequence=visit_sequence)
 
         status = 1
         if rsol.Route.validate(rsol_inst) == False:

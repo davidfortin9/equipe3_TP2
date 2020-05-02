@@ -61,9 +61,8 @@ def main(argv=None):
             params['B'] = None
             params['d'] = None
             params['N'] = None
-            params['whouse'] = None
             opts, args = getopt.getopt(argv[1:],
-                                    'hc:i:o:t:v:s:K:B:d:N:whouse:',
+                                    'hc:i:o:t:v:s:K:B:d:N:',
                                     ['help',
                                         'config=',
                                         'in-file=',
@@ -74,8 +73,7 @@ def main(argv=None):
                                         'K=',
                                         'B=',
                                         'd=',
-                                        'N=',
-                                        'whouse'])
+                                        'N='])
 
             print(opts)
         
@@ -161,12 +159,7 @@ def main(argv=None):
                         N = 0
                     elif N > 10:
                         N = 10
-                    params['N'] = N 
-                elif o in ('whouse'):
-                    filename = os.path.normpath(a)
-                    if not os.path.isfile(filename):
-                        raise Usage('Doit avoir whouse.py comme fichier d\'entré.')
-                    params['whouse'] = a  
+                    params['N'] = N  
                                      
                 else:
                     print(__doc__)
